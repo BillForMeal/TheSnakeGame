@@ -120,4 +120,8 @@ public class Snake {
     public boolean getDie() {
         return isDead;
     }
+
+    public Point getHead() {
+        return head;
+    }
 }
