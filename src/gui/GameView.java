@@ -20,6 +20,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -85,16 +86,15 @@ public class GameView {
             public void handle(ActionEvent event
             ) {
                 VBox optionsNode = new VBox();
-                grid = new GameGrid(10, 50);
-                grid.setColor(2, 2, "Black");
+                Label optionsTxt = new Label("Options go here!");
 
-                Scene goptionsScene = new Scene(optionsNode, 400, 400);
+                Scene optionsScene = new Scene(optionsNode, 400, 400);
 
                 Stage optionsStage = new Stage();
                 optionsStage.setTitle("Options Menu");
-                optionsStage.setScene(gameScene);
+                optionsStage.setScene(optionsScene);
                 optionsStage.sizeToScene();
-                optionsNode.getChildren().add(grid.getP());
+                optionsNode.getChildren().add(optionsTxt);
                 optionsStage.show();
 
             }
@@ -109,6 +109,18 @@ public class GameView {
             @Override
             public void handle(ActionEvent event
             ) {
+                VBox ldrBoardNode = new VBox();
+
+                Label ldrBoardTxt = new Label("Leaderboard goes here!");
+
+                Scene ldrBoardScene = new Scene(ldrBoardNode, 400, 400);
+
+                Stage ldrBoardStage = new Stage();
+                ldrBoardStage.setTitle("Snake Hall of Fame");
+                ldrBoardStage.setScene(ldrBoardScene);
+                ldrBoardStage.sizeToScene();
+                ldrBoardNode.getChildren().add(ldrBoardTxt);
+                ldrBoardStage.show();
             }
         }
         );
