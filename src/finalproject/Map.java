@@ -42,7 +42,12 @@ public class Map {
         food = this.getRandomPoint();
     }
 
-    private Point getRandomPoint() {
+    /**
+     * get a random point
+     *
+     * @return point
+     */
+    public Point getRandomPoint() {
         Random random = new Random();
         Point point;
         do {
@@ -51,26 +56,56 @@ public class Map {
         return point;
     }
 
+    /**
+     * get the # of columns of the map
+     *
+     * @return cols
+     */
     public int getCols() {
         return cols;
     }
 
+    /**
+     * get the # of rows of the map
+     *
+     * @return rows
+     */
     public int getRows() {
         return rows;
     }
 
+    /**
+     * get the width of the map
+     *
+     * @return width
+     */
     public double getWidth() {
         return rows * SIZE;
     }
 
+    /**
+     * get the height of the map
+     *
+     * @return height
+     */
     public double getHeight() {
         return cols * SIZE;
     }
 
+    /**
+     * get the snake
+     *
+     * @return snake
+     */
     public Snake getSnake() {
         return snake;
     }
 
+    /**
+     * get the food position
+     *
+     * @return food
+     */
     public Point getFood() {
         return food;
     }

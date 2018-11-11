@@ -132,7 +132,19 @@ public class SnakeTest {
         theSnake.setFood(food3);
         theSnake.moveLeft();
 
-        assertEquals(theSnake.isIsDead(), true);
+        assertEquals(theSnake.getDie(), true);
+    }
+
+    /**
+     * Test of snake growth
+     */
+    @Test
+    public void testGrow() {
+        System.out.println("grow");
+        Point food = new Point(0, 1);
+        theSnake.setFood(food);
+        theSnake.moveUp();
+        assertEquals(theSnake.getLength(), 2);
     }
 
 }
