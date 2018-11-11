@@ -18,14 +18,12 @@ package gui;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 /**
  *
@@ -39,105 +37,102 @@ public class GameView {
     private Button optionsBtn;
     private Button ldrBoardBtn;
     private VBox rootNode;
-
     private GameGrid grid;
+    private Button backBtn;
 
     public GameView(GameModel theModel) {
 
         this.theModel = theModel;
-
-        //grid = new GameGrid(10);
         gameTitle = new Text("Jörmungandr");
-
         gameTitle.setFont(Font.font("", FontWeight.SEMI_BOLD, 75));
-
         playBtn = new Button();
-
         playBtn.setText("Play");
         playBtn.setMinSize(90, 65);
+
+        backBtn = new Button();
+        backBtn.setText("Back to Main Menu");
+        backBtn.setMinSize(80, 40);
+
+        //
+        // Play button and Handler
         playBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
 
-                VBox gameNode = new VBox();
-                grid = new GameGrid(10, 50);
+                grid = new GameGrid(50, 15);
                 grid.setColor(2, 2, "Black");
 
-                Scene gameScene = new Scene(gameNode, 400, 400);
-
-                Stage gameStage = new Stage();
-                gameStage.setTitle("Jörmungandr");
-                gameStage.setScene(gameScene);
-                gameStage.sizeToScene();
-                gameNode.getChildren().add(grid.getP());
-                gameStage.show();
+                rootNode.getChildren().clear();
+                rootNode.getChildren().add(backBtn);
+                backBtn.setAlignment(Pos.TOP_LEFT);
+                rootNode.getChildren().add(grid.getPane());
 
             }
 
         });
 
+        //
+        // Options button and handler
         optionsBtn = new Button();
-
         optionsBtn.setText("Options");
-        optionsBtn.setOnAction(
-                new EventHandler<ActionEvent>() {
+        optionsBtn.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event
             ) {
-                VBox optionsNode = new VBox();
+
                 Label optionsTxt = new Label("Options go here!");
-
-                Scene optionsScene = new Scene(optionsNode, 400, 400);
-
-                Stage optionsStage = new Stage();
-                optionsStage.setTitle("Options Menu");
-                optionsStage.setScene(optionsScene);
-                optionsStage.sizeToScene();
-                optionsNode.getChildren().add(optionsTxt);
-                optionsStage.show();
+                rootNode.getChildren().clear();
+                rootNode.getChildren().add(backBtn);
+                backBtn.setAlignment(Pos.TOP_LEFT);
+                rootNode.getChildren().add(optionsTxt);
 
             }
         });
 
+        //
+        // Leaderboard button and handler
         ldrBoardBtn = new Button();
-
         ldrBoardBtn.setText(
                 "Leaderboard");
-        ldrBoardBtn.setOnAction(
-                new EventHandler<ActionEvent>() {
+        ldrBoardBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event
             ) {
-                VBox ldrBoardNode = new VBox();
 
                 Label ldrBoardTxt = new Label("Leaderboard goes here!");
-
-                Scene ldrBoardScene = new Scene(ldrBoardNode, 400, 400);
-
-                Stage ldrBoardStage = new Stage();
-                ldrBoardStage.setTitle("Snake Hall of Fame");
-                ldrBoardStage.setScene(ldrBoardScene);
-                ldrBoardStage.sizeToScene();
-                ldrBoardNode.getChildren().add(ldrBoardTxt);
-                ldrBoardStage.show();
+                rootNode.getChildren().clear();
+                rootNode.getChildren().add(backBtn);
+                backBtn.setAlignment(Pos.TOP_LEFT);
+                rootNode.getChildren().add(ldrBoardTxt);
             }
         }
         );
 
+        backBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event
+            ) {
+                rootNode.getChildren().clear();
+                rootNode.setAlignment(Pos.CENTER);
+                rootNode.setSpacing(20);
+                rootNode.getChildren().addAll(gameTitle, playBtn, optionsBtn,
+                                              ldrBoardBtn);
+            }
+        }
+        );
+
+        //initial main menu set up
         rootNode = new VBox();
-
         rootNode.setAlignment(Pos.CENTER);
-
         rootNode.setSpacing(20);
-
         rootNode.getChildren().addAll(gameTitle, playBtn, optionsBtn,
                                       ldrBoardBtn);
 
         //if press start
         //then switch to grid
         //model starts game
-        //rootNode.getChildren().add(grid.getP()); //this should not be in the final
+        //rootNode.getChildren().add(grid.getPane()); //this should not be in the final
     }
 
     public VBox getRootNode() {

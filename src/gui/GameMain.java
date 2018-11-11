@@ -40,7 +40,7 @@ public class GameMain extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        Scene scene = new Scene(this.theView.getRootNode());
+        Scene scene = new Scene(this.theView.getRootNode(), 800, 900);
 
         primaryStage.setTitle("Jörmungandr");
         primaryStage.setScene(scene);
@@ -54,8 +54,6 @@ public class GameMain extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        //GameGrid gg = new GameGrid();
-        //gg.makeGrid(10);
     }
 
 }

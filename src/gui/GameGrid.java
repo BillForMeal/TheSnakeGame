@@ -84,7 +84,7 @@ public class GameGrid {
         this.rec[i][j].setFill(Paint.valueOf(color));
     }
 
-    public Pane getP() {
+    public Pane getPane() {
         return p;
     }
 
