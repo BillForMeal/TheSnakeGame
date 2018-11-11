@@ -39,8 +39,11 @@ public class GameView {
     private VBox rootNode;
     private GameGrid grid;
     private Button backBtn;
+    private Label lbl;
 
     public GameView(GameModel theModel) {
+
+        lbl = new Label();
 
         this.theModel = theModel;
         gameTitle = new Text("Jörmungandr");
@@ -65,6 +68,7 @@ public class GameView {
                 rootNode.getChildren().clear();
                 rootNode.getChildren().add(backBtn);
                 backBtn.setAlignment(Pos.TOP_LEFT);
+                rootNode.getChildren().add(lbl); //*******
                 rootNode.getChildren().add(grid.getPane());
 
             }
@@ -137,6 +141,10 @@ public class GameView {
 
     public VBox getRootNode() {
         return rootNode;
+    }
+
+    public Label getLbl() {
+        return lbl;
     }
 
 }

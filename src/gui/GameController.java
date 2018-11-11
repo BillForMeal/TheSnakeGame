@@ -1,5 +1,10 @@
 package gui;
 
+import javafx.event.EventHandler;
+import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
+
 /* *****************************************
  * * CSCI205 - Software Engineering and Design
  * * Fall 2018
@@ -18,7 +23,8 @@ package gui;
 /**
  *  *
  *   * @author mpm022
- *    */
+ *
+ */
 public class GameController {//implements EventHandler<ActionEvent>{
 
     private GameView theView;
@@ -27,7 +33,16 @@ public class GameController {//implements EventHandler<ActionEvent>{
     public GameController(GameView theView, GameModel theModel) {
         this.theView = theView;
         this.theModel = theModel;
+
+        VBox rootNode = theView.getRootNode();
+        Label keyPressed = theView.getLbl();
+        rootNode.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent ke) {
+                keyPressed.setText("Key Pressed: " + ke.getCode());
+            }
+        });
     }
 
+    //on the game map, set up keyboard event handler
+    //out of map, use removeEventHandler()
 }
-
