@@ -30,6 +30,8 @@ public class Snake {
     private boolean isDead;
     private Point food;
 
+    public static final int SPEED = 5000;
+
     Snake(int x, int y) {
         this.head = new Point(x, y);
         this.snake = new ArrayList<>();
@@ -41,6 +43,21 @@ public class Snake {
 
     public boolean eat() {
         return head == food;
+    }
+
+    public void move() {
+        if ("up".equals(direction)) {
+            this.moveUp();
+        }
+        if ("down".equals(direction)) {
+            this.moveDown();
+        }
+        if ("left".equals(direction)) {
+            this.moveLeft();
+        }
+        if ("right".equals(direction)) {
+            this.moveRight();
+        }
     }
 
     /**
@@ -94,6 +111,10 @@ public class Snake {
         this.food = food;
     }
 
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
     public void die() {
         ArrayList<Point> body = new ArrayList<>();
         for (int i = 1; i < snake.size(); i++) {
@@ -123,5 +144,9 @@ public class Snake {
 
     public Point getHead() {
         return head;
+    }
+
+    public int getSpeed() {
+        return SPEED;
     }
 }

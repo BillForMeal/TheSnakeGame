@@ -21,4 +21,7 @@ package finalproject;
  */
 public class SnakeView {
 
+    public SnakeView() {
+    }
+
 }

@@ -15,37 +15,26 @@
  */
 package finalproject;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author yz010
  */
 public class SnakeModel {
 
-    private Point head;
-    private ArrayList<Point> snake;
-    private String direction;
-    private int length;
-    private boolean isDead;
-    private Point food;
+    private Snake theSnake;
 
     SnakeModel(int x, int y) {
-        this.head = new Point(x, y);
-        this.snake = new ArrayList<>();
-        snake.add(head);
-        this.direction = "up";
-        this.length = snake.size();
-        this.isDead = false;
+        this.theSnake = new Snake(x, y);
     }
 
-    public boolean eat() {
+    public Snake getSnake() {
+        return theSnake;
+    }
+
+    /*public boolean eat() {
         return head == food;
     }
 
-    /**
-     * move the snake up, add 1 to y coordinate
-     */
     public void moveUp() {
         Point newHead = new Point(head.getX(), head.getY() + 1);
         this.head = newHead;
@@ -103,12 +92,6 @@ public class SnakeModel {
             this.isDead = true;
         }
     }
-
-    /**
-     * get the ArrayList of points represent the snake
-     *
-     * @return
-     */
     public ArrayList<Point> getSnake() {
         return snake;
     }
@@ -123,5 +106,5 @@ public class SnakeModel {
 
     public Point getHead() {
         return head;
-    }
+    }*/
 }
