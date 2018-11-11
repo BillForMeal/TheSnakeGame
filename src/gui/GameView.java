@@ -84,6 +84,18 @@ public class GameView {
             @Override
             public void handle(ActionEvent event
             ) {
+                VBox optionsNode = new VBox();
+                grid = new GameGrid(10, 50);
+                grid.setColor(2, 2, "Black");
+
+                Scene goptionsScene = new Scene(optionsNode, 400, 400);
+
+                Stage optionsStage = new Stage();
+                optionsStage.setTitle("Options Menu");
+                optionsStage.setScene(gameScene);
+                optionsStage.sizeToScene();
+                optionsNode.getChildren().add(grid.getP());
+                optionsStage.show();
 
             }
         });
