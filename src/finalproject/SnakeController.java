@@ -33,6 +33,7 @@ public class SnakeController implements EventHandler<ActionEvent> {
     public SnakeController(SnakeView theView, SnakeModel theModel) {
         this.theView = theView;
         this.theModel = theModel;
+
     }
 
     private void UpdateGui(int score, Snake theSnake) {
