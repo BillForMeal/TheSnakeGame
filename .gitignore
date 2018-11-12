@@ -22,7 +22,8 @@
 *.ear
 
 # NetBeans specific, updated for 8.1
-nbproject/
+nbproject/private
+nbproject/project.properties
 build/
 nbbuild/
 dist/
