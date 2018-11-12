@@ -3,7 +3,9 @@ package gui;
 import finalproject.Snake;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -29,30 +31,37 @@ import javafx.scene.layout.VBox;
  *   * @author mpm022
  *
  */
-public class GameController {//implements EventHandler<ActionEvent>{
+public class GameController implements EventHandler<ActionEvent> {//implements EventHandler<ActionEvent>{
 
     private GameView theView;
     private GameModel theModel;
     private Snake theSnake;
     private SnakeTask theTask;
+    private GameGrid grid;
 
     public GameController(GameView theView, GameModel theModel) {
         this.theView = theView;
         this.theModel = theModel;
         this.theSnake = theModel.getSnake();
+        grid = new GameGrid(50, 15);
 
         VBox rootNode = theView.getRootNode();
         Label keyPressed = theView.getLbl();
+        this.theView.getPlayBtn().setOnAction(this);
+        this.theView.getOptionsBtn().setOnAction(this);
+        this.theView.getLdrBoardBtn().setOnAction(this);
+        this.theView.getBackBtn().setOnAction(this);
+
         rootNode.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent ke) {
                 if (ke.getCode().equals(KeyCode.W)) {
-                    theSnake.setDirection("up");
+                    theSnake.setDirection("down");
                 }
                 if (ke.getCode().equals(KeyCode.A)) {
                     theSnake.setDirection("left");
                 }
                 if (ke.getCode().equals(KeyCode.S)) {
-                    theSnake.setDirection("down");
+                    theSnake.setDirection("up");
                 }
                 if (ke.getCode().equals(KeyCode.D)) {
                     theSnake.setDirection("right");
@@ -61,12 +70,72 @@ public class GameController {//implements EventHandler<ActionEvent>{
                 //keyPressed.setText("Key Pressed: " + ke.getCode());
             }
         });
+
+    }
+
+    //Yuxuan's all-in-one event handler
+    public void handle(ActionEvent event) {
+        try {
+            int x = 1;//
+
+            Object source = event.getSource();
+            if (source == theView.getPlayBtn()) {
+
+                theView.getRootNode().getChildren().clear();
+                theView.getRootNode().getChildren().add(theView.getBackBtn());
+                theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
+                theView.getRootNode().getChildren().add(grid.getPane());
+
+                theTask = new SnakeTask(theView, theModel);
+                Thread th = new Thread(theTask);
+                th.setDaemon(true);
+                th.start();
+
+            }
+            if (source == theView.getOptionsBtn()) {
+                Label optionsTxt = new Label("Options go here!");
+                theView.getRootNode().getChildren().clear();
+                theView.getRootNode().getChildren().add(theView.getBackBtn());
+                theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
+                theView.getRootNode().getChildren().add(optionsTxt);
+            }
+            if (source == theView.getLdrBoardBtn()) {
+                Label ldrBoardTxt = new Label("Leaderboard goes here!");
+                theView.getRootNode().getChildren().clear();
+                theView.getRootNode().getChildren().add(theView.getBackBtn());
+                theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
+                theView.getRootNode().getChildren().add(ldrBoardTxt);
+            }
+            if (source == theView.getBackBtn()) {
+                theView.getRootNode().getChildren().clear();
+                theView.getRootNode().setAlignment(Pos.CENTER);
+                theView.getRootNode().setSpacing(20);
+                theView.getRootNode().getChildren().addAll(
+                        theView.getGameTitle(), theView.getPlayBtn(),
+                        theView.getOptionsBtn(),
+                        theView.getLdrBoardBtn());
+            }
+        } catch (Exception ex) {
+
+        }
+
     }
 
     private void UpdateGui(int score, Snake theSnake) {
+        /*
         this.theView.getGrid().clearGrid();
         this.theView.getGrid().addSnake(theSnake);
-        this.theView.getGrid().paintSnake();
+        this.theView.getGrid().paintSnake();*/
+        grid.clearGrid();
+        grid.addSnake(theSnake);
+        grid.paintSnake();
+        grid.generateFood();
+        grid.paintFood();
+
+        theView.getRootNode().getChildren().clear();
+        theView.getRootNode().getChildren().add(theView.getBackBtn());
+        theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
+        theView.getRootNode().getChildren().add(grid.getPane());
     }
 
     //on the game map, set up keyboard event handler

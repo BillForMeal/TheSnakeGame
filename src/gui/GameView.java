@@ -15,9 +15,6 @@
  */
 package gui;
 
-import gui.GameController.SnakeTask;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -44,8 +41,6 @@ public class GameView {
 
     public GameView(GameModel theModel) {
 
-        lbl = new Label();
-
         this.theModel = theModel;
         gameTitle = new Text("Jörmungandr");
         gameTitle.setFont(Font.font("", FontWeight.SEMI_BOLD, 75));
@@ -57,6 +52,7 @@ public class GameView {
         backBtn.setText("Back to Main Menu");
         backBtn.setMinSize(80, 40);
 
+        /*
         //
         // Play button and Handler
         playBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -76,11 +72,12 @@ public class GameView {
             }
 
         });
-
+         */
         //
         // Options button and handler
         optionsBtn = new Button();
         optionsBtn.setText("Options");
+        /*
         optionsBtn.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -95,12 +92,13 @@ public class GameView {
 
             }
         });
+         */
 
         //
         // Leaderboard button and handler
         ldrBoardBtn = new Button();
-        ldrBoardBtn.setText(
-                "Leaderboard");
+        ldrBoardBtn.setText("Leaderboard");
+        /*
         ldrBoardBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event
@@ -116,6 +114,7 @@ public class GameView {
         );
 
         backBtn.setOnAction(new EventHandler<ActionEvent>() {
+
             @Override
             public void handle(ActionEvent event
             ) {
@@ -127,6 +126,7 @@ public class GameView {
             }
         }
         );
+         */
 
         //initial main menu set up
         rootNode = new VBox();
@@ -155,6 +155,26 @@ public class GameView {
 
     public Button getPlayBtn() {
         return playBtn;
+    }
+
+    public GameModel getTheModel() {
+        return theModel;
+    }
+
+    public Text getGameTitle() {
+        return gameTitle;
+    }
+
+    public Button getOptionsBtn() {
+        return optionsBtn;
+    }
+
+    public Button getLdrBoardBtn() {
+        return ldrBoardBtn;
+    }
+
+    public Button getBackBtn() {
+        return backBtn;
     }
 
 }

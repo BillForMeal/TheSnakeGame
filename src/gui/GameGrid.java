@@ -32,16 +32,22 @@ public class GameGrid {
     private Rectangle[][] rec;
     private Snake theSnake;
     private int mapSize;
+    private boolean isFood;
+    private Point food;
 
     public GameGrid(int mapSize, int squareWidth) {
         this.mapSize = mapSize;
         this.p = new Pane();
         this.rec = new Rectangle[mapSize][mapSize];
         p = makeGrid(this.mapSize, p, rec, squareWidth);
+        isFood = false;
     }
 
     public void addSnake(Snake snake) {
         this.theSnake = snake;
+        if (theSnake.eat() == true) {
+            isFood = false;
+        }
     }
 
     public Point getRandomPoint() {
@@ -49,8 +55,16 @@ public class GameGrid {
         Point point;
         do {
             point = new Point(random.nextInt(mapSize), random.nextInt(mapSize));
-        } while (point.equals(theSnake.getHead()));
+        } while (theSnake.getSnake().indexOf(point) != -1);
         return point;
+    }
+
+    public void generateFood() {
+        if (isFood == false) {
+            food = this.getRandomPoint();
+            theSnake.setFood(food);
+            isFood = true;
+        }
     }
 
     /**
@@ -94,16 +108,13 @@ public class GameGrid {
     public void clearGrid() {
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
-                if (false) {
-                    rec[i][j].setStroke(Paint.valueOf("WHITE"));
-                }
-
+                rec[i][j].setFill(Paint.valueOf("WHITE"));
             }
         }
     }
 
     public void paintFood() {
-
+        rec[food.getX()][food.getY()].setFill(Paint.valueOf("GREEN"));
     }
 
     public Pane getPane() {
@@ -112,6 +123,10 @@ public class GameGrid {
 
     public int getsize() {
         return mapSize;
+    }
+
+    public Snake getTheSnake() {
+        return theSnake;
     }
 
 }

@@ -30,9 +30,9 @@ public class Snake {
     private boolean isDead;
     private Point food;
 
-    public static final int SPEED = 5000;
+    public static final int SPEED = 100;
 
-    Snake(int x, int y) {
+    public Snake(int x, int y) {
         this.head = new Point(x, y);
         this.snake = new ArrayList<>();
         snake.add(head);
@@ -49,6 +49,9 @@ public class Snake {
     public boolean eat() {
         boolean eaten = false;
         eaten = head.equals(food);
+        if (eaten == true) {
+            food = null;
+        }
         return eaten;
     }
 
@@ -77,7 +80,7 @@ public class Snake {
         Point newHead = new Point(head.getX(), head.getY() + 1);
         this.head = newHead;
         snake.add(0, newHead);
-        if (!this.eat()) {
+        if (this.eat() == false) {
             snake.remove(length);
         }
         this.length = this.snake.size();
@@ -92,7 +95,7 @@ public class Snake {
         Point newHead = new Point(head.getX(), head.getY() - 1);
         this.head = newHead;
         snake.add(0, newHead);
-        if (!this.eat()) {
+        if (this.eat() == false) {
             snake.remove(length);
         }
         this.length = this.snake.size();
@@ -107,7 +110,7 @@ public class Snake {
         Point newHead = new Point(head.getX() - 1, head.getY());
         this.head = newHead;
         snake.add(0, newHead);
-        if (!this.eat()) {
+        if (this.eat() == false) {
             snake.remove(length);
         }
         this.length = this.snake.size();
@@ -122,7 +125,7 @@ public class Snake {
         Point newHead = new Point(head.getX() + 1, head.getY());
         this.head = newHead;
         snake.add(0, newHead);
-        if (!this.eat()) {
+        if (this.eat() == false) {
             snake.remove(length);
         }
         this.length = this.snake.size();
