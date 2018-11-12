@@ -15,11 +15,21 @@
  */
 package gui;
 
+import finalproject.Snake;
+
 /**
  *
  * @author mpm022
  */
 public class GameModel {
-    //eatFood(), generateFood(), updateScore()...
 
+    private Snake theSnake;
+
+    GameModel() {
+        this.theSnake = new Snake(0, 0);
+    }
+
+    public Snake getSnake() {
+        return theSnake;
+    }
 }

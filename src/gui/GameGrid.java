@@ -1,5 +1,8 @@
 package gui;
 
+import finalproject.Point;
+import finalproject.Snake;
+import java.util.Random;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -27,11 +30,27 @@ public class GameGrid {
 
     private Pane p;
     private Rectangle[][] rec;
+    private Snake theSnake;
+    private int mapSize;
 
-    public GameGrid(int numSquares, int width) {
+    public GameGrid(int mapSize, int squareWidth) {
+        this.mapSize = mapSize;
         this.p = new Pane();
-        this.rec = new Rectangle[numSquares][numSquares];
-        p = makeGrid(numSquares, p, rec, width);
+        this.rec = new Rectangle[mapSize][mapSize];
+        p = makeGrid(this.mapSize, p, rec, squareWidth);
+    }
+
+    public void addSnake(Snake snake) {
+        this.theSnake = snake;
+    }
+
+    public Point getRandomPoint() {
+        Random random = new Random();
+        Point point;
+        do {
+            point = new Point(random.nextInt(mapSize), random.nextInt(mapSize));
+        } while (point.equals(theSnake.getHead()));
+        return point;
     }
 
     /**
@@ -58,25 +77,6 @@ public class GameGrid {
             }
         }
         return pain;
-        /*
-        pain.setOnMouseClicked(
-                new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me
-            ) {
-                double posX = me.getX();
-                double posY = me.getY();
-
-                int colX = (int) (posX / width);
-                int colY = (int) (posY / width);
-
-                rec[colX][colY].setFill(Color.RED);
-            }
-        }
-        );
-    }
-         */
-
     }
 
     //This works, but we need to add exceptionOutOfBounds handling
@@ -84,8 +84,34 @@ public class GameGrid {
         this.rec[i][j].setFill(Paint.valueOf(color));
     }
 
+    public void paintSnake() {
+        for (Point p : theSnake.getSnake()) {
+            this.rec[p.getX()][p.getY()].setFill(Paint.valueOf("RED"));
+        }
+
+    }
+
+    public void clearGrid() {
+        for (int i = 0; i < mapSize; i++) {
+            for (int j = 0; j < mapSize; j++) {
+                if (false) {
+                    rec[i][j].setStroke(Paint.valueOf("WHITE"));
+                }
+
+            }
+        }
+    }
+
+    public void paintFood() {
+
+    }
+
     public Pane getPane() {
         return p;
+    }
+
+    public int getsize() {
+        return mapSize;
     }
 
 }

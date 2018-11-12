@@ -15,6 +15,7 @@
  */
 package gui;
 
+import gui.GameController.SnakeTask;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -63,7 +64,7 @@ public class GameView {
             public void handle(ActionEvent event) {
 
                 grid = new GameGrid(50, 15);
-                grid.setColor(2, 2, "Black");
+                //grid.setColor(2, 2, "Black");
 
                 rootNode.getChildren().clear();
                 rootNode.getChildren().add(backBtn);
@@ -71,6 +72,7 @@ public class GameView {
                 rootNode.getChildren().add(lbl); //*******
                 rootNode.getChildren().add(grid.getPane());
 
+                theTask = new SnakeTask();
             }
 
         });
@@ -145,6 +147,14 @@ public class GameView {
 
     public Label getLbl() {
         return lbl;
+    }
+
+    public GameGrid getGrid() {
+        return grid;
+    }
+
+    public Button getPlayBtn() {
+        return playBtn;
     }
 
 }
