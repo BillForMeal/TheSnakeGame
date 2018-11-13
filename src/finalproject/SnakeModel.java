@@ -12,13 +12,13 @@
 * Description:
 *
 * ****************************************
- */
+ *//*
 package finalproject;
 
 /**
  *
  * @author yz010
- */
+ *//*
 public class SnakeModel {
 
     private Snake theSnake;
@@ -30,4 +30,4 @@ public class SnakeModel {
     public Snake getSnake() {
         return theSnake;
     }
-}
+}*/

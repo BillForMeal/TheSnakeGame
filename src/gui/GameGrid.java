@@ -45,8 +45,10 @@ public class GameGrid {
 
     public void addSnake(Snake snake) {
         this.theSnake = snake;
-        if (theSnake.eat() == true) {
+        Point head = theSnake.getHead();
+        if (theSnake.getHead().equals(food)) {
             isFood = false;
+            food = null;
         }
     }
 

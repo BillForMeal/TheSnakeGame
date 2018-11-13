@@ -13,6 +13,7 @@
 *
 * ****************************************
  */
+/*
 package finalproject;
 
 import javafx.concurrent.Task;
@@ -21,6 +22,7 @@ import javafx.concurrent.Task;
  *
  * @author yz010
  */
+/*
 public class SnakeController {
 
     private int score;
@@ -37,4 +39,4 @@ public class SnakeController {
 
     }
 
-}
+}*/

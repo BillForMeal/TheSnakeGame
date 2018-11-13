@@ -51,4 +51,8 @@ public class Point {
         return "Point" + "x=" + x + ", y=" + y;
     }
 
+    public boolean outOfMap(int mapSize) {
+        return (this.getX() > mapSize || this.getY() > mapSize);
+    }
+
 }

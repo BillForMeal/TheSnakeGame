@@ -13,6 +13,7 @@
 *
 * ****************************************
  */
+/*
 package finalproject;
 
 import javafx.application.Application;
@@ -26,7 +27,7 @@ import javafx.stage.Stage;
  *
  * @author yz010
  */
-public class SnakeMain extends Application {
+/*public class SnakeMain extends Application {
 
     @Override
     public void start(Stage primaryStage) {
@@ -44,13 +45,13 @@ public class SnakeMain extends Application {
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
+    }*/
 
     /**
      * @param args the command line arguments
-     */
+     *//*
     public static void main(String[] args) {
         launch(args);
     }
 
-}
+}*/

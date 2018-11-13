@@ -29,6 +29,7 @@ public class Snake {
     private int length;
     private boolean isDead;
     private Point food;
+    private int mapSize;
 
     public static final int SPEED = 100;
 
@@ -78,14 +79,19 @@ public class Snake {
      */
     public void moveUp() {
         Point newHead = new Point(head.getX(), head.getY() + 1);
-        this.head = newHead;
-        snake.add(0, newHead);
-        if (this.eat() == false) {
-            snake.remove(length);
+        if (newHead.outOfMap(mapSize)) {
+            this.killSnake();
         }
-        this.length = this.snake.size();
-        this.direction = "up";
-        this.die();
+        else {
+            this.head = newHead;
+            snake.add(0, newHead);
+            if (this.eat() == false) {
+                snake.remove(length);
+            }
+            this.length = this.snake.size();
+            this.direction = "up";
+            this.die();
+        }
     }
 
     /**
@@ -93,14 +99,19 @@ public class Snake {
      */
     public void moveDown() {
         Point newHead = new Point(head.getX(), head.getY() - 1);
-        this.head = newHead;
-        snake.add(0, newHead);
-        if (this.eat() == false) {
-            snake.remove(length);
+        if (newHead.outOfMap(mapSize)) {
+            this.killSnake();
         }
-        this.length = this.snake.size();
-        this.direction = "down";
-        this.die();
+        else {
+            this.head = newHead;
+            snake.add(0, newHead);
+            if (this.eat() == false) {
+                snake.remove(length);
+            }
+            this.length = this.snake.size();
+            this.direction = "down";
+            this.die();
+        }
     }
 
     /**
@@ -108,14 +119,19 @@ public class Snake {
      */
     public void moveLeft() {
         Point newHead = new Point(head.getX() - 1, head.getY());
-        this.head = newHead;
-        snake.add(0, newHead);
-        if (this.eat() == false) {
-            snake.remove(length);
+        if (newHead.outOfMap(mapSize)) {
+            this.killSnake();
         }
-        this.length = this.snake.size();
-        this.direction = "left";
-        this.die();
+        else {
+            this.head = newHead;
+            snake.add(0, newHead);
+            if (this.eat() == false) {
+                snake.remove(length);
+            }
+            this.length = this.snake.size();
+            this.direction = "left";
+            this.die();
+        }
     }
 
     /**
@@ -123,14 +139,19 @@ public class Snake {
      */
     public void moveRight() {
         Point newHead = new Point(head.getX() + 1, head.getY());
-        this.head = newHead;
-        snake.add(0, newHead);
-        if (this.eat() == false) {
-            snake.remove(length);
+        if (newHead.outOfMap(mapSize)) {
+            this.killSnake();
         }
-        this.length = this.snake.size();
-        this.direction = "right";
-        this.die();
+        else {
+            this.head = newHead;
+            snake.add(0, newHead);
+            if (this.eat() == false) {
+                snake.remove(length);
+            }
+            this.length = this.snake.size();
+            this.direction = "right";
+            this.die();
+        }
     }
 
     /**
@@ -151,6 +172,10 @@ public class Snake {
         this.direction = direction;
     }
 
+    public void setMapSize(int mapSize) {
+        this.mapSize = mapSize - 1;
+    }
+
     /**
      * kill the snake if it touches itself.
      */
@@ -160,8 +185,12 @@ public class Snake {
             body.add(snake.get(i));
         }
         if (body.indexOf(head) != -1) {
-            this.isDead = true;
+            this.killSnake();
         }
+    }
+
+    public void killSnake() {
+        this.isDead = true;
     }
 
     /**

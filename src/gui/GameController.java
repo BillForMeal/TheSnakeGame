@@ -38,6 +38,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
     private Snake theSnake;
     private SnakeTask theTask;
     private GameGrid grid;
+    private Thread th;
 
     public GameController(GameView theView, GameModel theModel) {
         this.theView = theView;
@@ -54,16 +55,16 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
         rootNode.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent ke) {
-                if (ke.getCode().equals(KeyCode.W)) {
+                if (ke.getCode().equals(KeyCode.W) && theSnake.getDirection() != "up") {
                     theSnake.setDirection("down");
                 }
-                if (ke.getCode().equals(KeyCode.A)) {
+                if (ke.getCode().equals(KeyCode.A) && theSnake.getDirection() != "right") {
                     theSnake.setDirection("left");
                 }
-                if (ke.getCode().equals(KeyCode.S)) {
+                if (ke.getCode().equals(KeyCode.S) && theSnake.getDirection() != "down") {
                     theSnake.setDirection("up");
                 }
-                if (ke.getCode().equals(KeyCode.D)) {
+                if (ke.getCode().equals(KeyCode.D) && theSnake.getDirection() != "left") {
                     theSnake.setDirection("right");
                 }
 
@@ -87,7 +88,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                 theView.getRootNode().getChildren().add(grid.getPane());
 
                 theTask = new SnakeTask(theView, theModel);
-                Thread th = new Thread(theTask);
+                th = new Thread(theTask);
                 th.setDaemon(true);
                 th.start();
 
@@ -114,6 +115,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                         theView.getGameTitle(), theView.getPlayBtn(),
                         theView.getOptionsBtn(),
                         theView.getLdrBoardBtn());
+                theTask = new SnakeTask(theView, theModel);
+                th = new Thread(theTask);
+                th.setDaemon(true);
             }
         } catch (Exception ex) {
 
@@ -152,6 +156,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
             this.theModel = theModel;
             this.score = 0;
             this.theSnake = theModel.getSnake();
+            theSnake.setMapSize(grid.getsize());
         }
 
         @Override
