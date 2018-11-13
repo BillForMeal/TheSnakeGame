@@ -32,4 +32,8 @@ public class GameModel {
     public Snake getSnake() {
         return theSnake;
     }
+
+    public void refreshModel() {
+        this.theSnake = new Snake(0, 0);
+    }
 }

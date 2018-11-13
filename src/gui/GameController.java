@@ -35,7 +35,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
     private GameView theView;
     private GameModel theModel;
-    private Snake theSnake;
+    //private Snake theSnake;
     private SnakeTask theTask;
     private GameGrid grid;
     private Thread th;
@@ -43,7 +43,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
     public GameController(GameView theView, GameModel theModel) {
         this.theView = theView;
         this.theModel = theModel;
-        this.theSnake = theModel.getSnake();
+        //this.theSnake = theModel.getSnake();
         grid = new GameGrid(50, 15);
 
         VBox rootNode = theView.getRootNode();
@@ -55,17 +55,17 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
         rootNode.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent ke) {
-                if (ke.getCode().equals(KeyCode.W) && theSnake.getDirection() != "up") {
-                    theSnake.setDirection("down");
+                if (ke.getCode().equals(KeyCode.W) && theModel.getSnake().getDirection() != "up") {
+                    theModel.getSnake().setDirection("down");
                 }
-                if (ke.getCode().equals(KeyCode.A) && theSnake.getDirection() != "right") {
-                    theSnake.setDirection("left");
+                if (ke.getCode().equals(KeyCode.A) && theModel.getSnake().getDirection() != "right") {
+                    theModel.getSnake().setDirection("left");
                 }
-                if (ke.getCode().equals(KeyCode.S) && theSnake.getDirection() != "down") {
-                    theSnake.setDirection("up");
+                if (ke.getCode().equals(KeyCode.S) && theModel.getSnake().getDirection() != "down") {
+                    theModel.getSnake().setDirection("up");
                 }
-                if (ke.getCode().equals(KeyCode.D) && theSnake.getDirection() != "left") {
-                    theSnake.setDirection("right");
+                if (ke.getCode().equals(KeyCode.D) && theModel.getSnake().getDirection() != "left") {
+                    theModel.getSnake().setDirection("right");
                 }
                 if (theModel.getSnake().getDie() == true) {
                     theTask.cancel();
@@ -90,6 +90,8 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                 theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
                 theView.getRootNode().getChildren().add(grid.getPane());
 
+                theModel.refreshModel();
+                //theSnake = theModel.getSnake();
                 theTask = new SnakeTask(theView, theModel);
                 th = new Thread(theTask);
                 th.setDaemon(true);
