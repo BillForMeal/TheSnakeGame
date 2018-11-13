@@ -67,6 +67,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                 if (ke.getCode().equals(KeyCode.D) && theSnake.getDirection() != "left") {
                     theSnake.setDirection("right");
                 }
+                if (theModel.getSnake().getDie() == true) {
+                    theTask.cancel();
+                }
 
                 //keyPressed.setText("Key Pressed: " + ke.getCode());
             }
@@ -91,7 +94,6 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                 th = new Thread(theTask);
                 th.setDaemon(true);
                 th.start();
-
             }
             if (source == theView.getOptionsBtn()) {
                 Label optionsTxt = new Label("Options go here!");
@@ -115,9 +117,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                         theView.getGameTitle(), theView.getPlayBtn(),
                         theView.getOptionsBtn(),
                         theView.getLdrBoardBtn());
-                theTask = new SnakeTask(theView, theModel);
-                th = new Thread(theTask);
-                th.setDaemon(true);
+                theTask.cancel();
             }
         } catch (Exception ex) {
 

@@ -52,7 +52,9 @@ public class Point {
     }
 
     public boolean outOfMap(int mapSize) {
-        return (this.getX() > mapSize || this.getY() > mapSize);
+        boolean tooLarge = this.getX() > mapSize || this.getY() > mapSize;
+        boolean tooSmall = this.getX() < 0 || this.getY() < 0;
+        return (tooLarge || tooSmall);
     }
 
 }
