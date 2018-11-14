@@ -91,6 +91,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                 theView.getRootNode().getChildren().add(grid.getPane());
 
                 theModel.refreshModel();
+                grid.setIsFood(false);
                 //theSnake = theModel.getSnake();
                 theTask = new SnakeTask(theView, theModel);
                 th = new Thread(theTask);

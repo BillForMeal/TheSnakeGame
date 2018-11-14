@@ -119,6 +119,10 @@ public class GameGrid {
         rec[food.getX()][food.getY()].setFill(Paint.valueOf("GREEN"));
     }
 
+    public void setIsFood(boolean isFood) {
+        this.isFood = isFood;
+    }
+
     public Pane getPane() {
         return p;
     }
