@@ -29,10 +29,11 @@ public class Snake {
     private int length;
     private boolean isDead;
     private Point food;
+    private int mapSize;
 
     public static final int SPEED = 5000;
 
-    Snake(int x, int y) {
+    public Snake(int x, int y) {
         this.head = new Point(x, y);
         this.snake = new ArrayList<>();
         snake.add(head);
@@ -75,10 +76,8 @@ public class Snake {
      */
     public void moveUp() {
         Point newHead = new Point(head.getX(), head.getY() + 1);
-        this.head = newHead;
-        snake.add(0, newHead);
-        if (!this.eat()) {
-            snake.remove(length);
+        if (newHead.outOfMap(mapSize)) {
+            this.killSnake();
         }
         this.length = this.snake.size();
         this.direction = "up";
@@ -90,10 +89,8 @@ public class Snake {
      */
     public void moveDown() {
         Point newHead = new Point(head.getX(), head.getY() - 1);
-        this.head = newHead;
-        snake.add(0, newHead);
-        if (!this.eat()) {
-            snake.remove(length);
+        if (newHead.outOfMap(mapSize)) {
+            this.killSnake();
         }
         this.length = this.snake.size();
         this.direction = "down";
@@ -105,10 +102,8 @@ public class Snake {
      */
     public void moveLeft() {
         Point newHead = new Point(head.getX() - 1, head.getY());
-        this.head = newHead;
-        snake.add(0, newHead);
-        if (!this.eat()) {
-            snake.remove(length);
+        if (newHead.outOfMap(mapSize)) {
+            this.killSnake();
         }
         this.length = this.snake.size();
         this.direction = "left";
@@ -120,10 +115,8 @@ public class Snake {
      */
     public void moveRight() {
         Point newHead = new Point(head.getX() + 1, head.getY());
-        this.head = newHead;
-        snake.add(0, newHead);
-        if (!this.eat()) {
-            snake.remove(length);
+        if (newHead.outOfMap(mapSize)) {
+            this.killSnake();
         }
         this.length = this.snake.size();
         this.direction = "right";
@@ -157,8 +150,12 @@ public class Snake {
             body.add(snake.get(i));
         }
         if (body.indexOf(head) != -1) {
-            this.isDead = true;
+            this.killSnake();
         }
+    }
+
+    public void killSnake() {
+        this.isDead = true;
     }
 
     /**

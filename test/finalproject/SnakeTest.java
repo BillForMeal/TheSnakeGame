@@ -17,6 +17,7 @@ package finalproject;
 
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -145,6 +146,30 @@ public class SnakeTest {
         theSnake.setFood(food);
         theSnake.moveUp();
         assertEquals(theSnake.getLength(), 2);
+    }
+
+    /**
+     * Test of move method, of class Snake.
+     */
+    @Test
+    public void testMove() {
+        System.out.println("move");
+        Snake instance = null;
+        instance.move();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of killSnake method, of class Snake.
+     */
+    @Test
+    public void testKillSnake() {
+        System.out.println("killSnake");
+        Snake instance = null;
+        instance.killSnake();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
 }
