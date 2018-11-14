@@ -39,11 +39,23 @@ public class GameView {
     private Button backBtn;
     private Label lbl;
 
+    private Text howTo;
+
     public GameView(GameModel theModel) {
 
         this.theModel = theModel;
         gameTitle = new Text("Jörmungandr");
         gameTitle.setFont(Font.font("", FontWeight.SEMI_BOLD, 75));
+
+        howTo = new Text("Welcome to Jormungandr!\n"
+                         + "Press Play to begin your game.\n"
+                         + "Use the w-a-s-d keys to move the snake up-left-down-right.\n"
+                         + "You can return to the Main Menu at any time, but that will end your game as if the snake had died.\n"
+                         + "Press Options to view the Options Menu. You are offered a variety of choices that will effect your gameplay.\n"
+                         + "Press Leaderboard to see the all-time high scorers list on your system.\n"
+                         + "We hope you enjoy your game!\n"
+                         + "- Team Jormungandr");
+
         playBtn = new Button();
         playBtn.setText("Play");
         playBtn.setMinSize(90, 65);
@@ -52,93 +64,21 @@ public class GameView {
         backBtn.setText("Back to Main Menu");
         backBtn.setMinSize(80, 40);
 
-        /*
-        //
-        // Play button and Handler
-        playBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
-                grid = new GameGrid(50, 15);
-                //grid.setColor(2, 2, "Black");
-
-                rootNode.getChildren().clear();
-                rootNode.getChildren().add(backBtn);
-                backBtn.setAlignment(Pos.TOP_LEFT);
-                rootNode.getChildren().add(lbl); //*******
-                rootNode.getChildren().add(grid.getPane());
-
-                theTask = new SnakeTask();
-            }
-
-        });
-         */
-        //
-        // Options button and handler
+        // Options button
         optionsBtn = new Button();
         optionsBtn.setText("Options");
-        /*
-        optionsBtn.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event
-            ) {
-
-                Label optionsTxt = new Label("Options go here!");
-                rootNode.getChildren().clear();
-                rootNode.getChildren().add(backBtn);
-                backBtn.setAlignment(Pos.TOP_LEFT);
-                rootNode.getChildren().add(optionsTxt);
-
-            }
-        });
-         */
-
-        //
-        // Leaderboard button and handler
+        // Leaderboard button
         ldrBoardBtn = new Button();
         ldrBoardBtn.setText("Leaderboard");
-        /*
-        ldrBoardBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event
-            ) {
-
-                Label ldrBoardTxt = new Label("Leaderboard goes here!");
-                rootNode.getChildren().clear();
-                rootNode.getChildren().add(backBtn);
-                backBtn.setAlignment(Pos.TOP_LEFT);
-                rootNode.getChildren().add(ldrBoardTxt);
-            }
-        }
-        );
-
-        backBtn.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event
-            ) {
-                rootNode.getChildren().clear();
-                rootNode.setAlignment(Pos.CENTER);
-                rootNode.setSpacing(20);
-                rootNode.getChildren().addAll(gameTitle, playBtn, optionsBtn,
-                                              ldrBoardBtn);
-            }
-        }
-        );
-         */
 
         //initial main menu set up
         rootNode = new VBox();
         rootNode.setAlignment(Pos.CENTER);
         rootNode.setSpacing(20);
-        rootNode.getChildren().addAll(gameTitle, playBtn, optionsBtn,
+        rootNode.getChildren().addAll(gameTitle, howTo, playBtn, optionsBtn,
                                       ldrBoardBtn);
 
-        //if press start
-        //then switch to grid
-        //model starts game
-        //rootNode.getChildren().add(grid.getPane()); //this should not be in the final
     }
 
     public VBox getRootNode() {
@@ -175,6 +115,10 @@ public class GameView {
 
     public Button getBackBtn() {
         return backBtn;
+    }
+
+    public Text getHowTo() {
+        return howTo;
     }
 
 }

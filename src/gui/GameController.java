@@ -117,7 +117,8 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                 theView.getRootNode().setAlignment(Pos.CENTER);
                 theView.getRootNode().setSpacing(20);
                 theView.getRootNode().getChildren().addAll(
-                        theView.getGameTitle(), theView.getPlayBtn(),
+                        theView.getGameTitle(), theView.getHowTo(),
+                        theView.getPlayBtn(),
                         theView.getOptionsBtn(),
                         theView.getLdrBoardBtn());
                 theTask.cancel();
