@@ -19,7 +19,7 @@ package finalproject;
  *
  * @author yz010
  */
-public class Player {
+public class Player implements Comparable<Player> {
 
     private String name;
     private int score;
@@ -57,6 +57,19 @@ public class Player {
         String player = Integer.toString(rank) + " " + name + " " + "score: " + Integer.toString(
                 score) + " " + date;
         return player;
+    }
+
+    @Override
+    public int compareTo(Player other) {
+        if (this.score > other.getScore()) {
+            return 1;
+        }
+        if (this.score < other.getScore()) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
     }
 
 }
