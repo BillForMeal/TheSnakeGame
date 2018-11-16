@@ -114,6 +114,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         theView.getRootNode().getChildren().add(theView.getSnakeSpeedIn());
         theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
         theView.getRootNode().getChildren().add(optionsTxt);
+        String mapsize = theView.getMapSizeIn().getText();
+        String speed = theView.getSnakeSpeedIn().getText();
+
     }
 
     private void gameWindow() {
