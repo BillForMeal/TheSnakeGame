@@ -22,7 +22,7 @@ import java.util.Collections;
  *
  * @author yz010
  */
-public class LeaderBoard {
+public class LeaderBoard implements java.io.Serializable {
 
     private ArrayList<Player> board;
     public final static int TOP = 10;
@@ -31,6 +31,7 @@ public class LeaderBoard {
         this.board = new ArrayList<Player>();
     }
     //need another method that reads a existing board, use Serializable
+    //to deserilaze, use: LeaderBoard = CopyNSave.deserilazation(filename);
 
     public void sortBoard() {
         for (Player p : board) {

@@ -19,7 +19,7 @@ package finalproject;
  *
  * @author yz010
  */
-public class Player implements Comparable<Player> {
+public class Player implements Comparable<Player>, java.io.Serializable {
 
     private String name;
     private int score;
