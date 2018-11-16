@@ -84,26 +84,10 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
             Object source = event.getSource();
             if (source == theView.getPlayBtn()) {
-
-                theView.getRootNode().getChildren().clear();
-                theView.getRootNode().getChildren().add(theView.getBackBtn());
-                theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
-                theView.getRootNode().getChildren().add(grid.getPane());
-
-                theModel.refreshModel();
-                grid.setIsFood(false);
-                //theSnake = theModel.getSnake();
-                theTask = new SnakeTask(theView, theModel);
-                th = new Thread(theTask);
-                th.setDaemon(true);
-                th.start();
+                gameWindow();
             }
             if (source == theView.getOptionsBtn()) {
-                Label optionsTxt = new Label("Options go here!");
-                theView.getRootNode().getChildren().clear();
-                theView.getRootNode().getChildren().add(theView.getBackBtn());
-                theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
-                theView.getRootNode().getChildren().add(optionsTxt);
+                options();
             }
             if (source == theView.getLdrBoardBtn()) {
                 Label ldrBoardTxt = new Label("Leaderboard goes here!");
@@ -113,20 +97,50 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                 theView.getRootNode().getChildren().add(ldrBoardTxt);
             }
             if (source == theView.getBackBtn()) {
-                theView.getRootNode().getChildren().clear();
-                theView.getRootNode().setAlignment(Pos.CENTER);
-                theView.getRootNode().setSpacing(20);
-                theView.getRootNode().getChildren().addAll(
-                        theView.getGameTitle(), theView.getHowTo(),
-                        theView.getPlayBtn(),
-                        theView.getOptionsBtn(),
-                        theView.getLdrBoardBtn());
-                theTask.cancel();
+                backToMain();
             }
         } catch (Exception ex) {
-
         }
 
+    }
+
+    private void options() {
+        Label optionsTxt = new Label("Options go here!");
+        theView.getRootNode().getChildren().clear();
+        theView.getRootNode().getChildren().add(theView.getBackBtn());
+        theView.getRootNode().getChildren().add(theView.getMapSize());
+        theView.getRootNode().getChildren().add(theView.getMapSizeIn());
+        theView.getRootNode().getChildren().add(theView.getSnakeSpeed());
+        theView.getRootNode().getChildren().add(theView.getSnakeSpeedIn());
+        theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
+        theView.getRootNode().getChildren().add(optionsTxt);
+    }
+
+    private void gameWindow() {
+        theView.getRootNode().getChildren().clear();
+        theView.getRootNode().getChildren().add(theView.getBackBtn());
+        theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
+        theView.getRootNode().getChildren().add(grid.getPane());
+
+        theModel.refreshModel();
+        grid.setIsFood(false);
+        //theSnake = theModel.getSnake();
+        theTask = new SnakeTask(theView, theModel);
+        th = new Thread(theTask);
+        th.setDaemon(true);
+        th.start();
+    }
+
+    private void backToMain() {
+        theView.getRootNode().getChildren().clear();
+        theView.getRootNode().setAlignment(Pos.CENTER);
+        theView.getRootNode().setSpacing(20);
+        theView.getRootNode().getChildren().addAll(
+                theView.getGameTitle(), theView.getHowTo(),
+                theView.getPlayBtn(),
+                theView.getOptionsBtn(),
+                theView.getLdrBoardBtn());
+        theTask.cancel();
     }
 
     private void UpdateGui(int score, Snake theSnake) {
@@ -142,6 +156,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
         theView.getRootNode().getChildren().clear();
         theView.getRootNode().getChildren().add(theView.getBackBtn());
+        theView.getRootNode().getChildren().add(theView.getCurrentScore());
+        theView.getRootNode().getChildren().add(theView.getScoreShown());
+        this.theView.getScoreShown().setText(Integer.toString(score));
         theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
         theView.getRootNode().getChildren().add(grid.getPane());
     }

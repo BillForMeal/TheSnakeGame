@@ -18,6 +18,12 @@ package gui;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -38,6 +44,12 @@ public class GameView {
     private GameGrid grid;
     private Button backBtn;
     private Label lbl;
+    private Label currentScore;
+    private Label scoreShown;
+    private Label mapSize;
+    private TextField mapSizeIn;
+    private Label snakeSpeed;
+    private TextField snakeSpeedIn;
 
     private Text howTo;
 
@@ -79,6 +91,38 @@ public class GameView {
         rootNode.getChildren().addAll(gameTitle, howTo, playBtn, optionsBtn,
                                       ldrBoardBtn);
 
+        //show scores
+        currentScore = new Label("Score:");
+        scoreShown = new Label("");
+        scoreShown.setMinWidth(75);
+        scoreShown.setMinHeight(25);
+        scoreShown.setBorder(new Border(new BorderStroke(null,
+                                                         BorderStrokeStyle.SOLID,
+                                                         new CornerRadii(4),
+                                                         BorderWidths.DEFAULT)));
+
+        //option menu
+        mapSize = new Label("Map Size:");
+        mapSizeIn = new TextField();
+        snakeSpeed = new Label("Snake Speed:");
+        snakeSpeedIn = new TextField();
+
+    }
+
+    public Label getSnakeSpeed() {
+        return snakeSpeed;
+    }
+
+    public TextField getSnakeSpeedIn() {
+        return snakeSpeedIn;
+    }
+
+    public Label getMapSize() {
+        return mapSize;
+    }
+
+    public TextField getMapSizeIn() {
+        return mapSizeIn;
     }
 
     public VBox getRootNode() {
@@ -119,6 +163,14 @@ public class GameView {
 
     public Text getHowTo() {
         return howTo;
+    }
+
+    public Label getCurrentScore() {
+        return currentScore;
+    }
+
+    public Label getScoreShown() {
+        return scoreShown;
     }
 
 }
