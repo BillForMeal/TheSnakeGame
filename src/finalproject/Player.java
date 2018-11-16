@@ -32,22 +32,47 @@ public class Player implements Comparable<Player> {
         this.date = date;
     }
 
+    /**
+     * set the rank of the player
+     *
+     * @param rank
+     */
     public void setRank(int rank) {
         this.rank = rank;
     }
 
+    /**
+     * get the name of the player
+     *
+     * @return String
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * get the score of the player
+     *
+     * @return int
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * get the rank of the player
+     *
+     * @return int
+     */
     public int getRank() {
         return rank;
     }
 
+    /**
+     * get the date of finish the game
+     *
+     * @return string
+     */
     public String getDate() {
         return date;
     }

@@ -15,10 +15,65 @@
  */
 package finalproject;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  *
  * @author yz010
  */
 public class LeaderBoard {
+
+    private ArrayList<Player> board;
+    public final static int TOP = 10;
+
+    public LeaderBoard() {
+        this.board = new ArrayList<Player>();
+    }
+    //need another method that reads a existing board, use Serializable
+
+    public void sortBoard() {
+        for (Player p : board) {
+            p.setRank(board.indexOf(p) + 1);
+        }
+        Collections.sort(board);
+    }
+
+    /**
+     * add a new player to the board, remove the players that has a rank more
+     * than TOP value
+     *
+     * @param player
+     */
+    public void addNewPlayer(Player player) {
+        board.add(player);
+        this.sortBoard();
+        while (board.size() > TOP) {
+            board.remove(board.size());
+        }
+    }
+
+    /**
+     * get the list of all players
+     *
+     * @return ArrayList
+     */
+    public ArrayList<Player> getBoard() {
+        return board;
+    }
+
+    /**
+     * change the ArrayList of players to a string, each player is a line
+     *
+     * @return String
+     */
+    @Override
+    public String toString() {
+        String leaderboard = "";
+        for (Player p : board) {
+            leaderboard = leaderboard + p.toString() + "\n";
+        }
+        return leaderboard;
+    }
 
 }
