@@ -15,6 +15,7 @@
  */
 package gui;
 
+import finalproject.LeaderBoard;
 import finalproject.Snake;
 
 /**
@@ -24,16 +25,24 @@ import finalproject.Snake;
 public class GameModel {
 
     private Snake theSnake;
+    private LeaderBoard leaderboard;
 
     GameModel() {
         this.theSnake = new Snake(0, 0);
+        this.leaderboard = new LeaderBoard();
     }
 
     public Snake getSnake() {
         return theSnake;
     }
 
+    public LeaderBoard getLeaderboard() {
+        return leaderboard;
+    }
+
     public void refreshModel() {
+        int speed = this.theSnake.getSpeed();
         this.theSnake = new Snake(0, 0);
+        this.theSnake.setSPEED(speed);
     }
 }

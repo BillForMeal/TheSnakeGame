@@ -17,8 +17,8 @@ package gui;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -46,10 +46,14 @@ public class GameView {
     private Label lbl;
     private Label currentScore;
     private Label scoreShown;
-    private Label mapSize;
-    private TextField mapSizeIn;
-    private Label snakeSpeed;
-    private TextField snakeSpeedIn;
+    private Label btmapSize;
+
+    private Label btsnakeSpeed;
+    private ChoiceBox<String> mapsize;
+    private ChoiceBox<String> speed;
+    private Button set;
+
+    private Label leaderboard;
 
     private Text howTo;
 
@@ -102,27 +106,50 @@ public class GameView {
                                                          BorderWidths.DEFAULT)));
 
         //option menu
-        mapSize = new Label("Map Size:");
-        mapSizeIn = new TextField();
-        snakeSpeed = new Label("Snake Speed:");
-        snakeSpeedIn = new TextField();
+        btmapSize = new Label("Map Size:");
+        mapsize = new ChoiceBox<>();
+        mapsize.getItems().add("20");
+        mapsize.getItems().add("30");
+        mapsize.getItems().add("40");
+        mapsize.getItems().add("50");
+        mapsize.setValue("40");
+        btsnakeSpeed = new Label("Snake Speed:");
+        speed = new ChoiceBox<>();
+        speed.getItems().add("slow");
+        speed.getItems().add("medium");
+        speed.getItems().add("fast");
+        speed.setValue("medium");
+        set = new Button("All set!");
 
+        leaderboard = new Label("");
+    }
+
+    public Label getLeaderboard() {
+        return leaderboard;
     }
 
     public Label getSnakeSpeed() {
-        return snakeSpeed;
+        return btsnakeSpeed;
     }
 
-    public TextField getSnakeSpeedIn() {
-        return snakeSpeedIn;
+    public Label getBtmapSize() {
+        return btmapSize;
     }
 
-    public Label getMapSize() {
-        return mapSize;
+    public ChoiceBox<String> getSpeed() {
+        return speed;
     }
 
-    public TextField getMapSizeIn() {
-        return mapSizeIn;
+    public Button getSet() {
+        return set;
+    }
+
+    public Label getBtsnakeSpeed() {
+        return btsnakeSpeed;
+    }
+
+    public ChoiceBox<String> getMapsize() {
+        return mapsize;
     }
 
     public VBox getRootNode() {

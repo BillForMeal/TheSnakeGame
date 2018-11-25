@@ -1,11 +1,13 @@
 package gui;
 
+import finalproject.LeaderBoard;
 import finalproject.Snake;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -44,10 +46,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         this.theView = theView;
         this.theModel = theModel;
         //this.theSnake = theModel.getSnake();
-        grid = new GameGrid(50, 15);
+        grid = new GameGrid(40, 15);
 
         VBox rootNode = theView.getRootNode();
-        Label keyPressed = theView.getLbl();
         this.theView.getPlayBtn().setOnAction(this);
         this.theView.getOptionsBtn().setOnAction(this);
         this.theView.getLdrBoardBtn().setOnAction(this);
@@ -95,6 +96,10 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                 theView.getRootNode().getChildren().add(theView.getBackBtn());
                 theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
                 theView.getRootNode().getChildren().add(ldrBoardTxt);
+                LeaderBoard a = new LeaderBoard();
+                theView.getLeaderboard().setText(a.toString());
+                theView.getRootNode().getChildren().add(theView.getLeaderboard());
+
             }
             if (source == theView.getBackBtn()) {
                 backToMain();
@@ -108,15 +113,31 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         Label optionsTxt = new Label("Options go here!");
         theView.getRootNode().getChildren().clear();
         theView.getRootNode().getChildren().add(theView.getBackBtn());
-        theView.getRootNode().getChildren().add(theView.getMapSize());
-        theView.getRootNode().getChildren().add(theView.getMapSizeIn());
-        theView.getRootNode().getChildren().add(theView.getSnakeSpeed());
-        theView.getRootNode().getChildren().add(theView.getSnakeSpeedIn());
+        theView.getRootNode().getChildren().add(theView.getBtmapSize());
+        theView.getRootNode().getChildren().add(theView.getMapsize());
+        theView.getRootNode().getChildren().add(theView.getBtsnakeSpeed());
+        theView.getRootNode().getChildren().add(theView.getSpeed());
+        theView.getRootNode().getChildren().add(theView.getSet());
         theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
-        theView.getRootNode().getChildren().add(optionsTxt);
-        String mapsize = theView.getMapSizeIn().getText();
-        String speed = theView.getSnakeSpeedIn().getText();
+        theView.getSet().setOnAction(e -> setEverything(theView.getMapsize(),
+                                                        theView.getSpeed()));
 
+    }
+
+    private void setEverything(ChoiceBox<String> size, ChoiceBox<String> speed) {
+        String Mapsize = size.getValue();
+        grid = new GameGrid(Integer.valueOf(Mapsize), 15);
+        String SnakeSpeed = speed.getValue();
+        if (SnakeSpeed.equals("slow")) {
+            theModel.getSnake().setSPEED(150);
+        }
+        else if (SnakeSpeed.equals("medium")) {
+            theModel.getSnake().setSPEED(100);
+        }
+        else {
+            theModel.getSnake().setSPEED(50);
+        }
+        System.out.println(theModel.getSnake().getSpeed());
     }
 
     private void gameWindow() {
@@ -144,6 +165,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                 theView.getOptionsBtn(),
                 theView.getLdrBoardBtn());
         theTask.cancel();
+
     }
 
     private void UpdateGui(int score, Snake theSnake) {
