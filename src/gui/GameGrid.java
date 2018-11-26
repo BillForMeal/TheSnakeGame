@@ -78,7 +78,6 @@ public class GameGrid {
      */
     public static Pane makeGrid(int n, Pane pain, Rectangle[][] rec, int width) {
 
-        //double width = 10;//GridMaker.SCREEN_SIZE / n;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 rec[i][j] = new Rectangle();
@@ -87,7 +86,6 @@ public class GameGrid {
                 rec[i][j].setWidth(width);
                 rec[i][j].setHeight(width);
                 rec[i][j].setFill(null);
-                //rec[i][j].setStroke(Paint.valueOf("BLACK"));
                 pain.getChildren().add(rec[i][j]);
 
             }
@@ -95,7 +93,6 @@ public class GameGrid {
         return pain;
     }
 
-    //This works, but we need to add exceptionOutOfBounds handling
     public void setColor(int i, int j, String color) {
         this.rec[i][j].setFill(Paint.valueOf(color));
     }

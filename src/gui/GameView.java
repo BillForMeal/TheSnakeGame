@@ -15,7 +15,7 @@
  */
 package gui;
 
-import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -25,6 +25,7 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -129,13 +130,42 @@ public class GameView {
 
     public void makeMainMenu() {
 
-        rootNode.setPrefSize(800, 900);
-        rootNode.setAlignment(gameTitle, Pos.TOP_CENTER);
+        HBox titleBox = new HBox();
+        titleBox.getChildren().add(gameTitle);
+
+        //rootNode.setPrefSize(800, 900);
         //btnBox will hold the three buttons
         VBox btnBox = new VBox();
         btnBox.getChildren().addAll(playBtn, optionsBtn, ldrBoardBtn);
+        btnBox.setSpacing(20);
+
+        HBox howToBox = new HBox();
+        howToBox.getChildren().add(howTo);
+
+        rootNode.setTop(titleBox);
+        //rootNode.setMargin(titleBox, new Insets(5, 200, 5, 200));
+        rootNode.setLeft(optionsBtn);
+        rootNode.setMargin(optionsBtn, new Insets(200, 0, 200, 0));
+        //rootNode.setAlignment(optionsBtn, Pos.CENTER_LEFT);
+        rootNode.setRight(ldrBoardBtn);
+        rootNode.setMargin(ldrBoardBtn, new Insets(200, 0, 200, 0));
+
+        //rootNode.setAlignment(ldrBoardBtn, Pos.CENTER_RIGHT);
+        rootNode.setCenter(playBtn);
+
+        //rootNode.setCenter(btnBox);
+        //rootNode.setAlignment(btnBox, Pos.CENTER);
+        rootNode.setBottom(howToBox);
+        rootNode.setMargin(howToBox, new Insets(5, 100, 5, 100));
+        //rootNode.setAlignment(howToBox, Pos.BOTTOM_CENTER);
+
+        rootNode.setPrefSize(400, 400);
+        /*
+        rootNode.getChildren().addAll(titleBox, btnBox, howToBox);
+        rootNode.setAlignment(titleBox, Pos.TOP_CENTER);
         rootNode.setAlignment(btnBox, Pos.CENTER);
-        rootNode.setAlignment(howTo, Pos.BOTTOM_CENTER);
+        rootNode.setAlignment(howToBox, Pos.BOTTOM_CENTER);
+         */
     }
 
     public Label getLeaderboard() {

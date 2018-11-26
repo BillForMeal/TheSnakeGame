@@ -40,7 +40,7 @@ public class GameMain extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        Scene scene = new Scene(this.theView.getRootNode(), 800, 900);
+        Scene scene = new Scene(this.theView.getRootNode(), 800, 400);
 
         primaryStage.setTitle("Jörmungandr");
         primaryStage.setScene(scene);

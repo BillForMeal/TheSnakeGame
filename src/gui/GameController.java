@@ -26,6 +26,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -138,9 +139,11 @@ public class GameController implements EventHandler<ActionEvent> {
 
     private void gameWindow() {
         theView.getRootNode().getChildren().clear();
-        theView.getRootNode().getChildren().add(theView.getBackBtn());
-        theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
-        theView.getRootNode().getChildren().add(grid.getPane());
+        theView.getRootNode().setTop(theView.getBackBtn());
+        theView.getRootNode().setAlignment(theView.getBackBtn(), Pos.TOP_LEFT);
+        theView.getRootNode().setMargin(theView.getBackBtn(), new Insets(20, 20,
+                                                                         20, 20));
+        theView.getRootNode().setCenter(grid.getPane());
 
         theModel.refreshModel();
         grid.setIsFood(false);
