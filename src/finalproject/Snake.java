@@ -31,9 +31,15 @@ public class Snake {
     private Point food;
     private int mapSize;
 
+<<<<<<< HEAD
     private int SPEED;
 
     public Snake(int x, int y) {
+=======
+    public static final int SPEED = 5000;
+
+    Snake(int x, int y) {
+>>>>>>> 31df7b576dcbc5699c68f7ed58f1e887a38a3ea0
         this.head = new Point(x, y);
         this.snake = new ArrayList<>();
         snake.add(head);
@@ -52,6 +58,21 @@ public class Snake {
         boolean eaten = false;
         eaten = head.equals(food);
         return eaten;
+    }
+
+    public void move() {
+        if ("up".equals(direction)) {
+            this.moveUp();
+        }
+        if ("down".equals(direction)) {
+            this.moveDown();
+        }
+        if ("left".equals(direction)) {
+            this.moveLeft();
+        }
+        if ("right".equals(direction)) {
+            this.moveRight();
+        }
     }
 
     /**
@@ -133,18 +154,24 @@ public class Snake {
         this.food = food;
     }
 
+<<<<<<< HEAD
     /**
      * set the direction of the snake
      *
      * @param direction
      */
+=======
+>>>>>>> 31df7b576dcbc5699c68f7ed58f1e887a38a3ea0
     public void setDirection(String direction) {
         this.direction = direction;
     }
 
+<<<<<<< HEAD
     /**
      * kill the snake if it touches itself.
      */
+=======
+>>>>>>> 31df7b576dcbc5699c68f7ed58f1e887a38a3ea0
     public void die() {
         ArrayList<Point> body = new ArrayList<>();
         for (int i = 1; i < snake.size(); i++) {
@@ -195,6 +222,7 @@ public class Snake {
         return head;
     }
 
+<<<<<<< HEAD
     /**
      * get the speed of the snake(time of move one unit in milliseconds)
      *
@@ -230,4 +258,9 @@ public class Snake {
         this.mapSize = mapSize;
     }
 
+=======
+    public int getSpeed() {
+        return SPEED;
+    }
+>>>>>>> 31df7b576dcbc5699c68f7ed58f1e887a38a3ea0
 }

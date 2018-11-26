@@ -11,7 +11,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 
 /* *****************************************
  * * CSCI205 - Software Engineering and Design
@@ -48,7 +48,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         //this.theSnake = theModel.getSnake();
         grid = new GameGrid(40, 15);
 
-        VBox rootNode = theView.getRootNode();
+        BorderPane rootNode = theView.getRootNode();
         this.theView.getPlayBtn().setOnAction(this);
         this.theView.getOptionsBtn().setOnAction(this);
         this.theView.getLdrBoardBtn().setOnAction(this);
@@ -157,8 +157,8 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
     private void backToMain() {
         theView.getRootNode().getChildren().clear();
-        theView.getRootNode().setAlignment(Pos.CENTER);
-        theView.getRootNode().setSpacing(20);
+        //theView.getRootNode().setAlignment(Pos.CENTER);
+        //theView.getRootNode().setSpacing(20);
         theView.getRootNode().getChildren().addAll(
                 theView.getGameTitle(), theView.getHowTo(),
                 theView.getPlayBtn(),

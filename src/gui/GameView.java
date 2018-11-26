@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
@@ -40,7 +41,7 @@ public class GameView {
     private Button playBtn;
     private Button optionsBtn;
     private Button ldrBoardBtn;
-    private VBox rootNode;
+    private BorderPane rootNode;
     private GameGrid grid;
     private Button backBtn;
     private Label lbl;
@@ -89,11 +90,17 @@ public class GameView {
         ldrBoardBtn.setText("Leaderboard");
 
         //initial main menu set up
-        rootNode = new VBox();
-        rootNode.setAlignment(Pos.CENTER);
-        rootNode.setSpacing(20);
-        rootNode.getChildren().addAll(gameTitle, howTo, playBtn, optionsBtn,
-                                      ldrBoardBtn);
+        rootNode = new BorderPane();
+        //rootNode.setAlignment(Pos.CENTER);
+        //rootNode.setSpacing(20);
+        //rootNode.getChildren().addAll(gameTitle, howTo, playBtn, optionsBtn,ldrBoardBtn);
+        rootNode.setAlignment(gameTitle, Pos.TOP_CENTER);
+
+        VBox btnBox = new VBox();
+        btnBox.getChildren().addAll(playBtn, optionsBtn, ldrBoardBtn);
+        rootNode.setAlignment(btnBox, Pos.CENTER);
+
+        rootNode.setAlignment(howTo, Pos.BOTTOM_CENTER);
 
         //show scores
         currentScore = new Label("Score:");
@@ -152,7 +159,7 @@ public class GameView {
         return mapsize;
     }
 
-    public VBox getRootNode() {
+    public BorderPane getRootNode() {
         return rootNode;
     }
 

@@ -42,15 +42,6 @@ public class GameMain extends Application {
 
         Scene scene = new Scene(this.theView.getRootNode(), 800, 900);
 
-        //Key press event handler, later move to controller
-        /*
-        Label keyPressed = new Label();
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent ke) {
-                keyPressed.setText("Key Pressed: " + ke.getCode());
-            }
-        });
-         */
         primaryStage.setTitle("Jörmungandr");
         primaryStage.setScene(scene);
         primaryStage.sizeToScene();
