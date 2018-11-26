@@ -31,7 +31,7 @@ public class Snake {
     private Point food;
     private int mapSize;
 
-    public static final int SPEED = 5000;
+    private int SPEED;
 
     public Snake(int x, int y) {
         this.head = new Point(x, y);
@@ -40,6 +40,7 @@ public class Snake {
         this.direction = "up";
         this.length = snake.size();
         this.isDead = false;
+        this.SPEED = 100;
     }
 
     /**
@@ -219,6 +220,14 @@ public class Snake {
      */
     public Point getFood() {
         return food;
+    }
+
+    public void setSPEED(int SPeed) {
+        this.SPEED = SPeed;
+    }
+
+    public void setMapSize(int mapSize) {
+        this.mapSize = mapSize;
     }
 
 }

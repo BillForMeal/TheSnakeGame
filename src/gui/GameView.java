@@ -17,7 +17,13 @@ package gui;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -38,6 +44,16 @@ public class GameView {
     private GameGrid grid;
     private Button backBtn;
     private Label lbl;
+    private Label currentScore;
+    private Label scoreShown;
+    private Label btmapSize;
+
+    private Label btsnakeSpeed;
+    private ChoiceBox<String> mapsize;
+    private ChoiceBox<String> speed;
+    private Button set;
+
+    private Label leaderboard;
 
     private Text howTo;
 
@@ -79,6 +95,61 @@ public class GameView {
         rootNode.getChildren().addAll(gameTitle, howTo, playBtn, optionsBtn,
                                       ldrBoardBtn);
 
+        //show scores
+        currentScore = new Label("Score:");
+        scoreShown = new Label("");
+        scoreShown.setMinWidth(75);
+        scoreShown.setMinHeight(25);
+        scoreShown.setBorder(new Border(new BorderStroke(null,
+                                                         BorderStrokeStyle.SOLID,
+                                                         new CornerRadii(4),
+                                                         BorderWidths.DEFAULT)));
+
+        //option menu
+        btmapSize = new Label("Map Size:");
+        mapsize = new ChoiceBox<>();
+        mapsize.getItems().add("20");
+        mapsize.getItems().add("30");
+        mapsize.getItems().add("40");
+        mapsize.getItems().add("50");
+        mapsize.setValue("40");
+        btsnakeSpeed = new Label("Snake Speed:");
+        speed = new ChoiceBox<>();
+        speed.getItems().add("slow");
+        speed.getItems().add("medium");
+        speed.getItems().add("fast");
+        speed.setValue("medium");
+        set = new Button("All set!");
+
+        leaderboard = new Label("");
+    }
+
+    public Label getLeaderboard() {
+        return leaderboard;
+    }
+
+    public Label getSnakeSpeed() {
+        return btsnakeSpeed;
+    }
+
+    public Label getBtmapSize() {
+        return btmapSize;
+    }
+
+    public ChoiceBox<String> getSpeed() {
+        return speed;
+    }
+
+    public Button getSet() {
+        return set;
+    }
+
+    public Label getBtsnakeSpeed() {
+        return btsnakeSpeed;
+    }
+
+    public ChoiceBox<String> getMapsize() {
+        return mapsize;
     }
 
     public VBox getRootNode() {
@@ -119,6 +190,14 @@ public class GameView {
 
     public Text getHowTo() {
         return howTo;
+    }
+
+    public Label getCurrentScore() {
+        return currentScore;
+    }
+
+    public Label getScoreShown() {
+        return scoreShown;
     }
 
 }

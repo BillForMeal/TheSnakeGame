@@ -87,7 +87,7 @@ public class GameGrid {
                 rec[i][j].setWidth(width);
                 rec[i][j].setHeight(width);
                 rec[i][j].setFill(null);
-                rec[i][j].setStroke(Paint.valueOf("BLACK"));
+                //rec[i][j].setStroke(Paint.valueOf("BLACK"));
                 pain.getChildren().add(rec[i][j]);
 
             }
