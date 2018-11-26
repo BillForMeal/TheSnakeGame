@@ -88,10 +88,10 @@ public class Player implements Comparable<Player>, java.io.Serializable {
     @Override
     public int compareTo(Player other) {
         if (this.score > other.getScore()) {
-            return 1;
+            return -1;
         }
         if (this.score < other.getScore()) {
-            return -1;
+            return 1;
         }
         else {
             return 0;

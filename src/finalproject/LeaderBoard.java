@@ -57,8 +57,8 @@ public class LeaderBoard implements java.io.Serializable {
     public void addNewPlayer(Player player) {
         board.add(player);
         this.sortBoard();
-        while (board.size() > TOP) {
-            board.remove(board.size());
+        if (board.size() > TOP) {
+            board.remove(TOP);
         }
     }
 
@@ -94,5 +94,4 @@ public class LeaderBoard implements java.io.Serializable {
         }
         return leaderboard;
     }
-
 }

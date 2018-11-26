@@ -90,17 +90,7 @@ public class GameView {
         ldrBoardBtn.setText("Leaderboard");
 
         //initial main menu set up
-        rootNode = new BorderPane();
-        //rootNode.setAlignment(Pos.CENTER);
-        //rootNode.setSpacing(20);
-        //rootNode.getChildren().addAll(gameTitle, howTo, playBtn, optionsBtn,ldrBoardBtn);
-        rootNode.setAlignment(gameTitle, Pos.TOP_CENTER);
-
-        VBox btnBox = new VBox();
-        btnBox.getChildren().addAll(playBtn, optionsBtn, ldrBoardBtn);
-        rootNode.setAlignment(btnBox, Pos.CENTER);
-
-        rootNode.setAlignment(howTo, Pos.BOTTOM_CENTER);
+        makeMainMenu();
 
         //show scores
         currentScore = new Label("Score:");
@@ -113,6 +103,12 @@ public class GameView {
                                                          BorderWidths.DEFAULT)));
 
         //option menu
+        makeOptionsMenu();
+
+        leaderboard = new Label("");
+    }
+
+    public void makeOptionsMenu() {
         btmapSize = new Label("Map Size:");
         mapsize = new ChoiceBox<>();
         mapsize.getItems().add("20");
@@ -127,8 +123,22 @@ public class GameView {
         speed.getItems().add("fast");
         speed.setValue("medium");
         set = new Button("All set!");
+    }
 
-        leaderboard = new Label("");
+    public void makeMainMenu() {
+
+        rootNode = new BorderPane();
+        rootNode.setPrefSize(800, 500);
+        //rootNode.setAlignment(Pos.CENTER);
+        //rootNode.setSpacing(20);
+        //rootNode.getChildren().addAll(gameTitle, howTo, playBtn, optionsBtn,ldrBoardBtn);
+        rootNode.setAlignment(gameTitle, Pos.TOP_CENTER);
+
+        VBox btnBox = new VBox();
+        btnBox.getChildren().addAll(playBtn, optionsBtn, ldrBoardBtn);
+        rootNode.setAlignment(btnBox, Pos.CENTER);
+
+        rootNode.setAlignment(howTo, Pos.BOTTOM_CENTER);
     }
 
     public Label getLeaderboard() {

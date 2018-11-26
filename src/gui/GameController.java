@@ -1,18 +1,3 @@
-package gui;
-
-import finalproject.LeaderBoard;
-import finalproject.Snake;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
-
 /* *****************************************
  * * CSCI205 - Software Engineering and Design
  * * Fall 2018
@@ -33,11 +18,25 @@ import javafx.scene.layout.BorderPane;
  *   * @author mpm022
  *
  */
-public class GameController implements EventHandler<ActionEvent> {//implements EventHandler<ActionEvent>{
+package gui;
+
+import finalproject.LeaderBoard;
+import finalproject.Snake;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
+
+public class GameController implements EventHandler<ActionEvent> {
 
     private GameView theView;
     private GameModel theModel;
-    //private Snake theSnake;
     private SnakeTask theTask;
     private GameGrid grid;
     private Thread th;
@@ -45,7 +44,6 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
     public GameController(GameView theView, GameModel theModel) {
         this.theView = theView;
         this.theModel = theModel;
-        //this.theSnake = theModel.getSnake();
         grid = new GameGrid(40, 15);
 
         BorderPane rootNode = theView.getRootNode();
@@ -71,14 +69,12 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                 if (theModel.getSnake().getDie() == true) {
                     theTask.cancel();
                 }
-
-                //keyPressed.setText("Key Pressed: " + ke.getCode());
             }
         });
 
     }
 
-    //Yuxuan's all-in-one event handler
+    //Game's all-in-one event handler
     public void handle(ActionEvent event) {
         try {
             int x = 1;//
@@ -148,7 +144,6 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
         theModel.refreshModel();
         grid.setIsFood(false);
-        //theSnake = theModel.getSnake();
         theTask = new SnakeTask(theView, theModel);
         th = new Thread(theTask);
         th.setDaemon(true);
@@ -157,22 +152,13 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
     private void backToMain() {
         theView.getRootNode().getChildren().clear();
-        //theView.getRootNode().setAlignment(Pos.CENTER);
-        //theView.getRootNode().setSpacing(20);
-        theView.getRootNode().getChildren().addAll(
-                theView.getGameTitle(), theView.getHowTo(),
-                theView.getPlayBtn(),
-                theView.getOptionsBtn(),
-                theView.getLdrBoardBtn());
+        theView.makeMainMenu();
         theTask.cancel();
 
     }
 
     private void UpdateGui(int score, Snake theSnake) {
-        /*
-        this.theView.getGrid().clearGrid();
-        this.theView.getGrid().addSnake(theSnake);
-        this.theView.getGrid().paintSnake();*/
+
         grid.clearGrid();
         grid.addSnake(theSnake);
         grid.paintSnake();
@@ -224,7 +210,5 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         public void changeDirection(String direction) {
             theSnake.setDirection(direction);
         }
-
     }
-
 }

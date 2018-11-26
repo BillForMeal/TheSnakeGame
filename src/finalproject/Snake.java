@@ -31,15 +31,9 @@ public class Snake {
     private Point food;
     private int mapSize;
 
-<<<<<<< HEAD
     private int SPEED;
 
     public Snake(int x, int y) {
-=======
-    public static final int SPEED = 5000;
-
-    Snake(int x, int y) {
->>>>>>> 31df7b576dcbc5699c68f7ed58f1e887a38a3ea0
         this.head = new Point(x, y);
         this.snake = new ArrayList<>();
         snake.add(head);
@@ -57,22 +51,10 @@ public class Snake {
     public boolean eat() {
         boolean eaten = false;
         eaten = head.equals(food);
+        if (eaten == true) {
+            food = null;
+        }
         return eaten;
-    }
-
-    public void move() {
-        if ("up".equals(direction)) {
-            this.moveUp();
-        }
-        if ("down".equals(direction)) {
-            this.moveDown();
-        }
-        if ("left".equals(direction)) {
-            this.moveLeft();
-        }
-        if ("right".equals(direction)) {
-            this.moveRight();
-        }
     }
 
     /**
@@ -101,9 +83,16 @@ public class Snake {
         if (newHead.outOfMap(mapSize)) {
             this.killSnake();
         }
-        this.length = this.snake.size();
-        this.direction = "up";
-        this.die();
+        else {
+            this.head = newHead;
+            snake.add(0, newHead);
+            if (this.eat() == false) {
+                snake.remove(length);
+            }
+            this.length = this.snake.size();
+            this.direction = "up";
+            this.die();
+        }
     }
 
     /**
@@ -114,9 +103,16 @@ public class Snake {
         if (newHead.outOfMap(mapSize)) {
             this.killSnake();
         }
-        this.length = this.snake.size();
-        this.direction = "down";
-        this.die();
+        else {
+            this.head = newHead;
+            snake.add(0, newHead);
+            if (this.eat() == false) {
+                snake.remove(length);
+            }
+            this.length = this.snake.size();
+            this.direction = "down";
+            this.die();
+        }
     }
 
     /**
@@ -127,9 +123,16 @@ public class Snake {
         if (newHead.outOfMap(mapSize)) {
             this.killSnake();
         }
-        this.length = this.snake.size();
-        this.direction = "left";
-        this.die();
+        else {
+            this.head = newHead;
+            snake.add(0, newHead);
+            if (this.eat() == false) {
+                snake.remove(length);
+            }
+            this.length = this.snake.size();
+            this.direction = "left";
+            this.die();
+        }
     }
 
     /**
@@ -140,9 +143,16 @@ public class Snake {
         if (newHead.outOfMap(mapSize)) {
             this.killSnake();
         }
-        this.length = this.snake.size();
-        this.direction = "right";
-        this.die();
+        else {
+            this.head = newHead;
+            snake.add(0, newHead);
+            if (this.eat() == false) {
+                snake.remove(length);
+            }
+            this.length = this.snake.size();
+            this.direction = "right";
+            this.die();
+        }
     }
 
     /**
@@ -154,24 +164,22 @@ public class Snake {
         this.food = food;
     }
 
-<<<<<<< HEAD
     /**
      * set the direction of the snake
      *
      * @param direction
      */
-=======
->>>>>>> 31df7b576dcbc5699c68f7ed58f1e887a38a3ea0
     public void setDirection(String direction) {
         this.direction = direction;
     }
 
-<<<<<<< HEAD
+    public void setMapSize(int mapSize) {
+        this.mapSize = mapSize - 1;
+    }
+
     /**
      * kill the snake if it touches itself.
      */
-=======
->>>>>>> 31df7b576dcbc5699c68f7ed58f1e887a38a3ea0
     public void die() {
         ArrayList<Point> body = new ArrayList<>();
         for (int i = 1; i < snake.size(); i++) {
@@ -222,7 +230,6 @@ public class Snake {
         return head;
     }
 
-<<<<<<< HEAD
     /**
      * get the speed of the snake(time of move one unit in milliseconds)
      *
@@ -254,13 +261,4 @@ public class Snake {
         this.SPEED = SPeed;
     }
 
-    public void setMapSize(int mapSize) {
-        this.mapSize = mapSize;
-    }
-
-=======
-    public int getSpeed() {
-        return SPEED;
-    }
->>>>>>> 31df7b576dcbc5699c68f7ed58f1e887a38a3ea0
 }
