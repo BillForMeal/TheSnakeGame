@@ -91,9 +91,13 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
             }
             if (source == theView.getLdrBoardBtn()) {
                 Label ldrBoardTxt = new Label("Leaderboard goes here!");
+                //File ldrBoardFile = new File(something.txt);
+
                 theView.getRootNode().getChildren().clear();
                 theView.getRootNode().getChildren().add(theView.getBackBtn());
                 theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
+                //theView.getRootNode().getChildren().add(ldrBoardFile);
+
                 theView.getRootNode().getChildren().add(ldrBoardTxt);
             }
             if (source == theView.getBackBtn()) {
