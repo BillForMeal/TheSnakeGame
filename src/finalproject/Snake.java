@@ -31,7 +31,7 @@ public class Snake {
     private Point food;
     private int mapSize;
 
-    public static final int SPEED = 100;
+    public static final int SPEED = 5000;
 
     public Snake(int x, int y) {
         this.head = new Point(x, y);
@@ -50,9 +50,6 @@ public class Snake {
     public boolean eat() {
         boolean eaten = false;
         eaten = head.equals(food);
-        if (eaten == true) {
-            food = null;
-        }
         return eaten;
     }
 
@@ -82,16 +79,9 @@ public class Snake {
         if (newHead.outOfMap(mapSize)) {
             this.killSnake();
         }
-        else {
-            this.head = newHead;
-            snake.add(0, newHead);
-            if (this.eat() == false) {
-                snake.remove(length);
-            }
-            this.length = this.snake.size();
-            this.direction = "up";
-            this.die();
-        }
+        this.length = this.snake.size();
+        this.direction = "up";
+        this.die();
     }
 
     /**
@@ -102,16 +92,9 @@ public class Snake {
         if (newHead.outOfMap(mapSize)) {
             this.killSnake();
         }
-        else {
-            this.head = newHead;
-            snake.add(0, newHead);
-            if (this.eat() == false) {
-                snake.remove(length);
-            }
-            this.length = this.snake.size();
-            this.direction = "down";
-            this.die();
-        }
+        this.length = this.snake.size();
+        this.direction = "down";
+        this.die();
     }
 
     /**
@@ -122,16 +105,9 @@ public class Snake {
         if (newHead.outOfMap(mapSize)) {
             this.killSnake();
         }
-        else {
-            this.head = newHead;
-            snake.add(0, newHead);
-            if (this.eat() == false) {
-                snake.remove(length);
-            }
-            this.length = this.snake.size();
-            this.direction = "left";
-            this.die();
-        }
+        this.length = this.snake.size();
+        this.direction = "left";
+        this.die();
     }
 
     /**
@@ -142,16 +118,9 @@ public class Snake {
         if (newHead.outOfMap(mapSize)) {
             this.killSnake();
         }
-        else {
-            this.head = newHead;
-            snake.add(0, newHead);
-            if (this.eat() == false) {
-                snake.remove(length);
-            }
-            this.length = this.snake.size();
-            this.direction = "right";
-            this.die();
-        }
+        this.length = this.snake.size();
+        this.direction = "right";
+        this.die();
     }
 
     /**
@@ -170,10 +139,6 @@ public class Snake {
      */
     public void setDirection(String direction) {
         this.direction = direction;
-    }
-
-    public void setMapSize(int mapSize) {
-        this.mapSize = mapSize - 1;
     }
 
     /**
