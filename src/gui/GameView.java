@@ -90,6 +90,7 @@ public class GameView {
         ldrBoardBtn.setText("Leaderboard");
 
         //initial main menu set up
+        rootNode = new BorderPane();
         makeMainMenu();
 
         //show scores
@@ -108,6 +109,7 @@ public class GameView {
         leaderboard = new Label("");
     }
 
+    //Grunt work for setting up Options Menu
     public void makeOptionsMenu() {
         btmapSize = new Label("Map Size:");
         mapsize = new ChoiceBox<>();
@@ -127,17 +129,12 @@ public class GameView {
 
     public void makeMainMenu() {
 
-        rootNode = new BorderPane();
-        rootNode.setPrefSize(800, 500);
-        //rootNode.setAlignment(Pos.CENTER);
-        //rootNode.setSpacing(20);
-        //rootNode.getChildren().addAll(gameTitle, howTo, playBtn, optionsBtn,ldrBoardBtn);
+        rootNode.setPrefSize(800, 900);
         rootNode.setAlignment(gameTitle, Pos.TOP_CENTER);
-
+        //btnBox will hold the three buttons
         VBox btnBox = new VBox();
         btnBox.getChildren().addAll(playBtn, optionsBtn, ldrBoardBtn);
         rootNode.setAlignment(btnBox, Pos.CENTER);
-
         rootNode.setAlignment(howTo, Pos.BOTTOM_CENTER);
     }
 
