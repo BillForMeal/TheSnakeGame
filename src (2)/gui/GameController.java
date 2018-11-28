@@ -2,7 +2,6 @@ package gui;
 
 import finalproject.LeaderBoard;
 import finalproject.Player;
-import finalproject.SaveLeaderBoard;
 import finalproject.Snake;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -103,16 +102,6 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                 options();
             }
             if (source == theView.getLdrBoardBtn()) {
-
-                Label ldrBoardTxt = new Label("Leaderboard goes here!");
-                //File ldrBoardFile = new File(something.txt);
-
-                theView.getRootNode().getChildren().clear();
-                theView.getRootNode().getChildren().add(theView.getBackBtn());
-                theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
-                //theView.getRootNode().getChildren().add(ldrBoardFile);
-
-                theView.getRootNode().getChildren().add(ldrBoardTxt);
                 leaderBoard();
             }
             if (source == theView.getBackBtn()) {
@@ -130,8 +119,6 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                                                      empDateFormat.format(
                                                              date));
                     theModel.getLeaderboard().addNewPlayer(newHighScore);
-                    SaveLeaderBoard.serilazation(theModel.getLeaderboard(),
-                                                 "board.csv");
 
                 }
                 backToMain();

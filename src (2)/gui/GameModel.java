@@ -16,10 +16,7 @@
 package gui;
 
 import finalproject.LeaderBoard;
-import finalproject.SaveLeaderBoard;
 import finalproject.Snake;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /**
  *
@@ -30,13 +27,9 @@ public class GameModel {
     private Snake theSnake;
     private LeaderBoard leaderboard;
 
-    GameModel() throws IOException, ClassNotFoundException {
+    GameModel() {
         this.theSnake = new Snake(0, 0);
-        try {
-            leaderboard = SaveLeaderBoard.deserilazation("board.csv");
-        } catch (FileNotFoundException f) {
-            this.leaderboard = new LeaderBoard();
-        }
+        this.leaderboard = new LeaderBoard();
     }
 
     public Snake getSnake() {
