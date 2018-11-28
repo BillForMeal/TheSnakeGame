@@ -1,10 +1,8 @@
+package gui;
 
 import finalproject.LeaderBoard;
 import finalproject.Player;
 import finalproject.Snake;
-import gui.GameGrid;
-import gui.GameModel;
-import gui.GameView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javafx.application.Platform;
