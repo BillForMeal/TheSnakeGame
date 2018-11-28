@@ -75,7 +75,7 @@ public class GameController implements EventHandler<ActionEvent> {
 
     }
 
-    //Game's all-in-one event handler
+    //Yuxuan's all-in-one event handler
     public void handle(ActionEvent event) {
         try {
             int x = 1;//
@@ -88,22 +88,42 @@ public class GameController implements EventHandler<ActionEvent> {
                 options();
             }
             if (source == theView.getLdrBoardBtn()) {
-                Label ldrBoardTxt = new Label("Leaderboard goes here!");
-                theView.getRootNode().getChildren().clear();
-                theView.getRootNode().getChildren().add(theView.getBackBtn());
-                theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
-                theView.getRootNode().getChildren().add(ldrBoardTxt);
-                LeaderBoard a = new LeaderBoard();
-                theView.getLeaderboard().setText(a.toString());
-                theView.getRootNode().getChildren().add(theView.getLeaderboard());
-
+                leaderBoard();
             }
             if (source == theView.getBackBtn()) {
+                backToMain();
+            }
+            if (source == theView.getGameBackBtn()) {
+                Date date = new Date();
+                int score = theTask.getScore();
+                int lowScore = theTask.getLowScore();
+                theTask.cancel();
+                if (score > lowScore) {
+                    String name = JOptionPane.showInputDialog(null,
+                                                              "What's your name?");
+                    Player newHighScore = new Player(name, score,
+                                                     empDateFormat.format(
+                                                             date));
+                    theModel.getLeaderboard().addNewPlayer(newHighScore);
+
+                }
                 backToMain();
             }
         } catch (Exception ex) {
         }
 
+    }
+    
+    private void leaderBoard() {
+        gamemode = false;
+        Label ldrBoardTxt = new Label("Leaderboard goes here!");
+        theView.getRootNode().getChildren().clear();
+        theView.getRootNode().getChildren().add(theView.getBackBtn());
+        theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
+        theView.getRootNode().getChildren().add(ldrBoardTxt);
+        LeaderBoard a = theModel.getLeaderboard();
+        theView.getLeaderboard().setText(a.toString());
+        theView.getRootNode().getChildren().add(theView.getLeaderboard());
     }
 
     private void options() {
