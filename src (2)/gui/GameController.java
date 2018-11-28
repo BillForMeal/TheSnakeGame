@@ -2,7 +2,6 @@ package gui;
 
 import finalproject.LeaderBoard;
 import finalproject.Player;
-import finalproject.SaveLeaderBoard;
 import finalproject.Snake;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -120,8 +119,6 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                                                      empDateFormat.format(
                                                              date));
                     theModel.getLeaderboard().addNewPlayer(newHighScore);
-                    SaveLeaderBoard.serilazation(theModel.getLeaderboard(),
-                                                 "board.csv");
 
                 }
                 backToMain();
