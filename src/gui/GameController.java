@@ -49,7 +49,6 @@ public class GameController implements EventHandler<ActionEvent> {
     public GameController(GameView theView, GameModel theModel) {
         this.theView = theView;
         this.theModel = theModel;
-        //this.theSnake = theModel.getSnake();
         grid = new GameGrid(40, 15);
         gamemode = false;
 
@@ -79,7 +78,6 @@ public class GameController implements EventHandler<ActionEvent> {
                                                   "Please press the Back to Main Menu button");
                 }
 
-                //keyPressed.setText("Key Pressed: " + ke.getCode());
             }
         });
 
@@ -95,6 +93,10 @@ public class GameController implements EventHandler<ActionEvent> {
                 gameWindow();
             }
             if (source == theView.getOptionsBtn()) {
+                /*
+                gamemode = false;
+                theView.makeOptionsMenu();
+                 */
                 options();
             }
             if (source == theView.getLdrBoardBtn()) {
@@ -178,7 +180,6 @@ public class GameController implements EventHandler<ActionEvent> {
 
         theModel.refreshModel();
         grid.setIsFood(false);
-        //theSnake = theModel.getSnake();
         theTask = new SnakeTask(theView, theModel);
         th = new Thread((Runnable) theTask);
         th.setDaemon(true);
@@ -192,10 +193,6 @@ public class GameController implements EventHandler<ActionEvent> {
     }
 
     private void UpdateGui(int score, Snake theSnake) {
-        /*
-        this.theView.getGrid().clearGrid();
-        this.theView.getGrid().addSnake(theSnake);
-        this.theView.getGrid().paintSnake();*/
         grid.clearGrid();
         grid.addSnake(theSnake);
         grid.paintSnake();
