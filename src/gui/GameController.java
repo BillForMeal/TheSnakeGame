@@ -1,3 +1,24 @@
+
+import finalproject.LeaderBoard;
+import finalproject.Player;
+import finalproject.Snake;
+import gui.GameGrid;
+import gui.GameModel;
+import gui.GameView;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
+import javax.swing.JOptionPane;
+
 /* *****************************************
  * * CSCI205 - Software Engineering and Design
  * * Fall 2018
@@ -13,7 +34,7 @@
  * *
  * * ****************************************
  *  */
-public class GameController implements EventHandler<ActionEvent> {//implements EventHandler<ActionEvent>{
+public class GameController implements EventHandler<ActionEvent> {
 
     private GameView theView;
     private GameModel theModel;
@@ -32,7 +53,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         grid = new GameGrid(40, 15);
         gamemode = false;
 
-        VBox rootNode = theView.getRootNode();
+        BorderPane rootNode = theView.getRootNode();
         this.theView.getPlayBtn().setOnAction(this);
         this.theView.getOptionsBtn().setOnAction(this);
         this.theView.getLdrBoardBtn().setOnAction(this);
@@ -82,7 +103,8 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
             if (source == theView.getBackBtn()) {
                 backToMain();
             }
-            if (source == theView.getGameBackBtn()) {
+
+            if (theView.getGameBackBtn() == source) {
                 Date date = new Date();
                 int score = theTask.getScore();
                 int lowScore = theTask.getLowScore();
@@ -125,7 +147,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         theView.getRootNode().getChildren().add(theView.getBtsnakeSpeed());
         theView.getRootNode().getChildren().add(theView.getSpeed());
         theView.getRootNode().getChildren().add(theView.getSet());
-        theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
+        theView.getRootNode().setAlignment(theView.getBackBtn(), Pos.TOP_LEFT);
         theView.getSet().setOnAction(e -> setEverything(theView.getMapsize(),
                                                         theView.getSpeed()));
 
@@ -149,15 +171,16 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
     private void gameWindow() {
         theView.getRootNode().getChildren().clear();
-        theView.getRootNode().getChildren().add(theView.getGameBackBtn());
-        theView.getGameBackBtn().setAlignment(Pos.TOP_LEFT);
+        theView.getRootNode().setTop(theView.getGameBackBtn());
+        theView.getRootNode().setAlignment(theView.getGameBackBtn(),
+                                           Pos.TOP_LEFT);
         theView.getRootNode().getChildren().add(grid.getPane());
 
         theModel.refreshModel();
         grid.setIsFood(false);
         //theSnake = theModel.getSnake();
         theTask = new SnakeTask(theView, theModel);
-        th = new Thread(theTask);
+        th = new Thread((Runnable) theTask);
         th.setDaemon(true);
         th.start();
         gamemode = true;
@@ -165,13 +188,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
     private void backToMain() {
         theView.getRootNode().getChildren().clear();
-        theView.getRootNode().setAlignment(Pos.CENTER);
-        theView.getRootNode().setSpacing(20);
-        theView.getRootNode().getChildren().addAll(
-                theView.getGameTitle(), theView.getHowTo(),
-                theView.getPlayBtn(),
-                theView.getOptionsBtn(),
-                theView.getLdrBoardBtn());
+        theView.makeMainMenu();
     }
 
     private void UpdateGui(int score, Snake theSnake) {
