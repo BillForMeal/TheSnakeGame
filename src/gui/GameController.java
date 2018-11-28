@@ -9,12 +9,14 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javax.swing.JOptionPane;
 
 /* *****************************************
@@ -127,27 +129,45 @@ public class GameController implements EventHandler<ActionEvent> {
 
     private void leaderBoard() {
         gamemode = false;
-        Label ldrBoardTxt = new Label("Leaderboard goes here!");
+        Label ldrBoardTxt = new Label("Leaderboard goes here!\n");
+
+        VBox vbox = new VBox();
+
         theView.getRootNode().getChildren().clear();
-        theView.getRootNode().getChildren().add(theView.getBackBtn());
+        theView.getRootNode().setTop(theView.getBackBtn());
         theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
-        theView.getRootNode().getChildren().add(ldrBoardTxt);
+
         LeaderBoard a = theModel.getLeaderboard();
         theView.getLeaderboard().setText(a.toString());
-        theView.getRootNode().getChildren().add(theView.getLeaderboard());
+        vbox.getChildren().addAll(ldrBoardTxt, theView.getLeaderboard());
+        //theView.getRootNode().getChildren().add(ldrBoardTxt);
+
+        theView.getRootNode().setCenter(vbox);
+        theView.getRootNode().setMargin(vbox, new Insets(200, 0, 200, 300));
+
     }
 
     private void options() {
         gamemode = false;
         Label optionsTxt = new Label("Options go here!");
         theView.getRootNode().getChildren().clear();
+
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(theView.getBackBtn(), theView.getBtmapSize(),
+                                  theView.getMapsize(),
+                                  theView.getBtsnakeSpeed(), theView.getSpeed(),
+                                  theView.getSet());
+        theView.getRootNode().setTop(vbox);
+        theView.getRootNode().setAlignment(vbox, Pos.TOP_CENTER);
+
+        /*
         theView.getRootNode().getChildren().add(theView.getBackBtn());
         theView.getRootNode().getChildren().add(theView.getBtmapSize());
         theView.getRootNode().getChildren().add(theView.getMapsize());
         theView.getRootNode().getChildren().add(theView.getBtsnakeSpeed());
         theView.getRootNode().getChildren().add(theView.getSpeed());
         theView.getRootNode().getChildren().add(theView.getSet());
-        theView.getRootNode().setAlignment(theView.getBackBtn(), Pos.TOP_LEFT);
+        theView.getRootNode().setAlignment(theView.getBackBtn(), Pos.TOP_LEFT);*/
         theView.getSet().setOnAction(e -> setEverything(theView.getMapsize(),
                                                         theView.getSpeed()));
 
