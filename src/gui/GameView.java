@@ -133,7 +133,6 @@ public class GameView {
         HBox titleBox = new HBox();
         titleBox.getChildren().add(gameTitle);
 
-        //rootNode.setPrefSize(800, 900);
         //btnBox will hold the three buttons
         VBox btnBox = new VBox();
         btnBox.getChildren().addAll(playBtn, optionsBtn, ldrBoardBtn);
@@ -143,29 +142,16 @@ public class GameView {
         howToBox.getChildren().add(howTo);
 
         rootNode.setTop(titleBox);
-        //rootNode.setMargin(titleBox, new Insets(5, 200, 5, 200));
-        rootNode.setLeft(optionsBtn);
-        rootNode.setMargin(optionsBtn, new Insets(200, 0, 200, 0));
-        //rootNode.setAlignment(optionsBtn, Pos.CENTER_LEFT);
-        rootNode.setRight(ldrBoardBtn);
-        rootNode.setMargin(ldrBoardBtn, new Insets(200, 0, 200, 0));
+        rootNode.setMargin(titleBox, new Insets(50, 0, 100, 150));
 
-        //rootNode.setAlignment(ldrBoardBtn, Pos.CENTER_RIGHT);
-        rootNode.setCenter(playBtn);
+        rootNode.setCenter(btnBox);
+        rootNode.setMargin(btnBox, new Insets(100, 0, 100, 350));
 
-        //rootNode.setCenter(btnBox);
-        //rootNode.setAlignment(btnBox, Pos.CENTER);
         rootNode.setBottom(howToBox);
-        rootNode.setMargin(howToBox, new Insets(5, 100, 5, 100));
-        //rootNode.setAlignment(howToBox, Pos.BOTTOM_CENTER);
+        rootNode.setMargin(howToBox, new Insets(0, 0, 100, 50));
 
-        rootNode.setPrefSize(400, 400);
-        /*
-        rootNode.getChildren().addAll(titleBox, btnBox, howToBox);
-        rootNode.setAlignment(titleBox, Pos.TOP_CENTER);
-        rootNode.setAlignment(btnBox, Pos.CENTER);
-        rootNode.setAlignment(howToBox, Pos.BOTTOM_CENTER);
-         */
+        //Trying to set a background image- this doesn't do anything
+        //rootNode.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);");
     }
 
     public Label getLeaderboard() {
