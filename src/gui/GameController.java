@@ -143,9 +143,11 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
     private void gameWindow() {
         theView.getRootNode().getChildren().clear();
         theView.getRootNode().getChildren().add(theView.getBackBtn());
+
         theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
         theView.getRootNode().getChildren().add(grid.getPane());
-
+        theView.getRootNode().getChildren().add(theView.getCurrentScore());
+        theView.getRootNode().getChildren().add(theView.getScoreShown());
         theModel.refreshModel();
         grid.setIsFood(false);
         //theSnake = theModel.getSnake();
@@ -153,6 +155,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         th = new Thread(theTask);
         th.setDaemon(true);
         th.start();
+        theView.getRootNode().getChildren().add(theView.getStop());
+        theView.getStop().setOnAction(e -> stopped());
+
     }
 
     private void backToMain() {
@@ -178,14 +183,40 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         grid.paintSnake();
         grid.generateFood();
         grid.paintFood();
+        //change value
+        this.theView.getScoreShown().setText(Integer.toString(score));
 
+        //System.out.println(theView.getRootNode().getChildren().size());
+    }
+
+    private void stopped() {
+        // a = theView.getRootNode().getChildren();
         theView.getRootNode().getChildren().clear();
         theView.getRootNode().getChildren().add(theView.getBackBtn());
-        theView.getRootNode().getChildren().add(theView.getCurrentScore());
-        theView.getRootNode().getChildren().add(theView.getScoreShown());
-        this.theView.getScoreShown().setText(Integer.toString(score));
+        theView.getRootNode().getChildren().add(theView.getResume());
+        theView.getResume().setOnAction(e -> resumed());
+        theTask.cancel();
+    }
+
+    private void resumed() {
+        if (theModel.getSnake().getDie()) {
+            backToMain();
+        }
+        theView.getRootNode().getChildren().clear();
+        theView.getRootNode().getChildren().add(theView.getBackBtn());
+
         theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
         theView.getRootNode().getChildren().add(grid.getPane());
+        theView.getRootNode().getChildren().add(theView.getCurrentScore());
+        theView.getRootNode().getChildren().add(theView.getScoreShown());
+
+        theTask = new SnakeTask(theView, theModel);
+        th = new Thread(theTask);
+        th.setDaemon(true);
+        th.start();
+        theView.getRootNode().getChildren().add(theView.getStop());
+        theView.getStop().setOnAction(e -> stopped());
+
     }
 
     //on the game map, set up keyboard event handler

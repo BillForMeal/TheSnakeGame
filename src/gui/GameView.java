@@ -55,6 +55,9 @@ public class GameView {
 
     private Label leaderboard;
 
+    private Button stop;
+    private Button resume;
+
     private Text howTo;
 
     public GameView(GameModel theModel) {
@@ -122,6 +125,18 @@ public class GameView {
         set = new Button("All set!");
 
         leaderboard = new Label("");
+
+        //stop button
+        stop = new Button("pause");
+        resume = new Button("resume");
+    }
+
+    public Button getStop() {
+        return stop;
+    }
+
+    public Button getResume() {
+        return resume;
     }
 
     public Label getLeaderboard() {
