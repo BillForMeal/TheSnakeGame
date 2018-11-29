@@ -97,8 +97,8 @@ public class GameView {
         rootNode = new VBox();
         rootNode.setAlignment(Pos.CENTER);
         rootNode.setSpacing(20);
-        rootNode.getChildren().addAll(gameTitle, howTo, playBtn, optionsBtn,
-                                      ldrBoardBtn);
+        rootNode.getChildren().addAll(gameTitle, playBtn, optionsBtn,
+                                      ldrBoardBtn, howTo);
 
         //show scores
         currentScore = new Label("Score:");

@@ -104,7 +104,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
             }
             if (source == theView.getLdrBoardBtn()) {
 
-                Label ldrBoardTxt = new Label("Leaderboard goes here!");
+                Label ldrBoardTxt = new Label("Leaderboard");
                 //File ldrBoardFile = new File(something.txt);
 
                 theView.getRootNode().getChildren().clear();
@@ -143,7 +143,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
     private void leaderBoard() {
         gamemode = false;
-        Label ldrBoardTxt = new Label("Leaderboard goes here!");
+        Label ldrBoardTxt = new Label("Leaderboard");
         theView.getRootNode().getChildren().clear();
         theView.getRootNode().getChildren().add(theView.getBackBtn());
         theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
@@ -206,10 +206,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         theView.getRootNode().setAlignment(Pos.CENTER);
         theView.getRootNode().setSpacing(20);
         theView.getRootNode().getChildren().addAll(
-                theView.getGameTitle(), theView.getHowTo(),
-                theView.getPlayBtn(),
-                theView.getOptionsBtn(),
-                theView.getLdrBoardBtn());
+                theView.getGameTitle(), theView.getPlayBtn(),
+                theView.getOptionsBtn(), theView.getLdrBoardBtn(),
+                theView.getHowTo());
     }
 
     private void UpdateGui(int score, Snake theSnake) {
