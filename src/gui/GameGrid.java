@@ -110,7 +110,7 @@ public class GameGrid {
     public void clearGrid() {
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
-                rec[i][j].setFill(Paint.valueOf("WHITE"));
+                rec[i][j].setFill(Paint.valueOf("LIGHTBLUE"));
             }
         }
     }
