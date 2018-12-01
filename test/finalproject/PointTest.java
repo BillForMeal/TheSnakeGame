@@ -50,4 +50,15 @@ public class PointTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of equals method.
+     */
+    @Test
+    public void testEquals() {
+        Point one = new Point(0, 0);
+        Point two = new Point(0, 0);
+        Boolean ekual = one.equals(two);
+        assertEquals(true, ekual);
+    }
+
 }
