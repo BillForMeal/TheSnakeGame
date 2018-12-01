@@ -47,6 +47,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
     private GameGrid grid;
     private Thread th;
     private boolean gamemode;
+    private boolean easterEggTriggered;
 
     private static SimpleDateFormat empDateFormat = new SimpleDateFormat(
             "yyyy-MM-dd");
@@ -57,6 +58,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         //this.theSnake = theModel.getSnake();
         grid = new GameGrid(40, 15);
         gamemode = false;
+        easterEggTriggered = false;
 
         VBox rootNode = theView.getRootNode();
         this.theView.getPlayBtn().setOnAction(this);
@@ -174,6 +176,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
     }
 
     private void gameWindow() {
+        easterEggTriggered = false;
         theView.getRootNode().getChildren().clear();
         theView.getRootNode().getChildren().add(theView.getGameBackBtn());
         theView.getGameBackBtn().setAlignment(Pos.TOP_LEFT);
@@ -191,7 +194,6 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         gamemode = true;
         theView.getRootNode().getChildren().add(theView.getStop());
         theView.getStop().setOnAction(e -> stopped());
-
     }
 
     private void backToMain() {
@@ -219,6 +221,10 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         grid.paintFood();
         //change value
         this.theView.getScoreShown().setText(Integer.toString(score));
+        if (grid.EasterEgg() == true && easterEggTriggered == false) {
+            easterEggTriggered = true;
+            this.EasterEgg();
+        }
 
     }
 
@@ -250,6 +256,15 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         theView.getRootNode().getChildren().add(theView.getStop());
         theView.getStop().setOnAction(e -> stopped());
 
+    }
+
+    private void EasterEgg() {
+        int worldSize = grid.getsize() * 4 + 1;
+        theTask.setScore(worldSize);
+        theView.getRootNode().getChildren().clear();
+        theView.getRootNode().getChildren().add(theView.getGameBackBtn());
+        theTask.cancel();
+        JOptionPane.showMessageDialog(null, "EasterEgg");
     }
 
     //on the game map, set up keyboard event handler
@@ -300,6 +315,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
             return lowScore;
         }
 
-    }
+        public void setScore(int score) {
+            this.score = score;
+        }
 
+    }
 }
