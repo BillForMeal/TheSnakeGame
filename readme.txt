@@ -4,3 +4,17 @@ Include any important details to ensure the we can easily compile and execute yo
 directions to run your program using the jar file. We should not need to spend lots of time trying to determine
 what files are in your folder for each phase due date. Clearly indicate which Java file contains the main program
 (and, your main method should always be in a Java file located in the root source folder, and not in a package.)
+
+
+
+
+Team Jormungandr-
+Bill Chen, Dylan Laderoute, Matt McLaughlin, and Yuxuan Zhan
+
+This project is our implementation of the classic Snake game using Java and JavaFX. 
+It includes an options menu where a player may select various speeds and map sizes to adjust difficulty. 
+It also includes a fully functional leaderboard which records a high-scorer's name, score, and the date of their achievement.
+In the game itself, players navigate their snake with W-A-S-D or the arrow keys. The game may be paused and/or exited at any time.
+Upon exit the player may enter their name if they have made the leaderboard.
+
+Instructions to compile and execute:
