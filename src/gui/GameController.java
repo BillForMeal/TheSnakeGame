@@ -115,6 +115,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                 if (score > lowScore) {
                     String name = JOptionPane.showInputDialog(null,
                                                               "What's your name?");
+                    if (name == null) {
+                        name = "Anonymous";
+                    }
                     Player newHighScore = new Player(name, score,
                                                      empDateFormat.format(
                                                              date));
