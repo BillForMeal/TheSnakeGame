@@ -65,7 +65,7 @@ public class LeaderBoard implements java.io.Serializable {
     /**
      * get the lowest score in the leader board
      *
-     * @return int
+     * @return integer
      */
     public int getLastPlayer() {
         return board.get(TOP).getScore();

@@ -16,6 +16,7 @@
 package finalproject;
 
 import org.junit.After;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,13 +43,11 @@ public class PointTest {
     @Test
     public void testOutOfMap() {
         System.out.println("outOfMap");
-        int mapSize = 0;
-        Point instance = null;
+        int mapSize = 200;
+        Point instance = new Point(0, 0);
         boolean expResult = false;
         boolean result = instance.outOfMap(mapSize);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }

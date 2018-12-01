@@ -17,7 +17,6 @@ package finalproject;
 
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,6 +35,7 @@ public class SnakeTest {
     @Before
     public void setUp() {
         theSnake = new Snake(0, 0);
+        theSnake.setMapSize(20);
     }
 
     @After
@@ -58,46 +58,13 @@ public class SnakeTest {
     }
 
     /**
-     * Test of moveUp method, of class Snake.
+     * Test of moveDown method, of class Snake.
      */
     @Test
     public void testMoveUp() {
         System.out.println("moveUp");
         theSnake.moveUp();
         move = new Point(0, 1);
-        assertEquals(move, theSnake.getHead());
-    }
-
-    /**
-     * Test of moveDown method, of class Snake.
-     */
-    @Test
-    public void testMoveDown() {
-        System.out.println("moveDown");
-        theSnake.moveDown();
-        move = new Point(0, -1);
-        assertEquals(move, theSnake.getHead());
-    }
-
-    /**
-     * Test of moveLeft method, of class Snake.
-     */
-    @Test
-    public void testMoveLeft() {
-        System.out.println("moveLeft");
-        theSnake.moveLeft();
-        move = new Point(-1, 0);
-        assertEquals(move, theSnake.getHead());
-    }
-
-    /**
-     * Test of moveRight method, of class Snake.
-     */
-    @Test
-    public void testMoveRight() {
-        System.out.println("moveRight");
-        theSnake.moveRight();
-        move = new Point(1, 0);
         assertEquals(move, theSnake.getHead());
     }
 
@@ -149,27 +116,14 @@ public class SnakeTest {
     }
 
     /**
-     * Test of move method, of class Snake.
-     */
-    @Test
-    public void testMove() {
-        System.out.println("move");
-        Snake instance = null;
-        instance.move();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of killSnake method, of class Snake.
      */
     @Test
     public void testKillSnake() {
         System.out.println("killSnake");
         Snake instance = null;
-        instance.killSnake();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        theSnake.killSnake();
+        assertEquals(theSnake.getDie(), true);
     }
 
 }
