@@ -8,5 +8,11 @@ In the game itself, players navigate their snake with W-A-S-D or the arrow keys.
 Upon exit the player may enter their name if they have made the leaderboard.
 
 Instructions to compile and execute:
+
+To run the project from the command line, 
+go to the dist folder and
+type the following:
+java -jar "csci205FinalProject.jar"
+ 
 Our main method is in the GameMain.java file, in the gui folder.
 CSCI205FinalProject/src/gui/GameMain.java
