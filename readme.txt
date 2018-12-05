@@ -10,6 +10,8 @@ We also hid an easter egg. (Check for GameController.java if you can't figure ou
 
 Instructions to compile and execute:
 
+For Windows, just download and run the jar file. 
+
 To run the project from the command line, 
 go to the dist folder and
 type the following:
