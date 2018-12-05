@@ -51,6 +51,12 @@ public class Point {
         return "Point" + "x=" + x + ", y=" + y;
     }
 
+    /**
+     * Checks if a point is out of map, returns boolean value
+     *
+     * @param mapSize
+     * @return boolean
+     */
     public boolean outOfMap(int mapSize) {
         boolean tooLarge = this.getX() > mapSize || this.getY() > mapSize;
         boolean tooSmall = this.getX() < 0 || this.getY() < 0;

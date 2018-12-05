@@ -41,7 +41,7 @@ public class SaveLeaderBoard {
     }
 
     /**
-     * read the neural network stored in a csv file
+     * read the leaderboard stored in a csv file
      *
      * @param fileName
      * @return

@@ -21,6 +21,18 @@ import java.util.ArrayList;
  *
  * @author yz010
  */
+/**
+ * Title: Snake in JavaFX
+ *
+ * Author: Astrobleme
+ *
+ * Date: 2017-01-06
+ *
+ * Code version: 1.0
+ *
+ * Availability:
+ * https://codereview.stackexchange.com/questions/151800/snake-in-javafx
+ */
 public class Snake {
 
     private Point head;
