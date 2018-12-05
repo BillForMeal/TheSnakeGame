@@ -110,7 +110,7 @@ public class GameGrid {
     public void clearGrid() {
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
-                rec[i][j].setFill(Paint.valueOf("WHITE"));
+                rec[i][j].setFill(Paint.valueOf("LIGHTBLUE"));
             }
         }
     }
@@ -133,6 +133,35 @@ public class GameGrid {
 
     public Snake getTheSnake() {
         return theSnake;
+    }
+
+    public boolean EasterEgg() {
+        int x = 0;
+        for (int i = 0; i <= mapSize - 1; i++) {
+            Point testPoint = new Point(i, 0);
+            if (theSnake.getSnake().indexOf(testPoint) != -1) {// the testpoint is on the sanke
+                x += 1;
+            }
+        }
+        for (int i = 0; i <= mapSize - 1; i++) {
+            Point testPoint = new Point(i, mapSize - 1);
+            if (theSnake.getSnake().indexOf(testPoint) != -1) {// the testpoint is on the sanke
+                x += 1;
+            }
+        }
+        for (int i = 0; i <= mapSize - 1; i++) {
+            Point testPoint = new Point(0, i);
+            if (theSnake.getSnake().indexOf(testPoint) != -1) {// the testpoint is on the sanke
+                x += 1;
+            }
+        }
+        for (int i = 0; i <= mapSize - 1; i++) {
+            Point testPoint = new Point(mapSize - 1, i);
+            if (theSnake.getSnake().indexOf(testPoint) != -1) {// the testpoint is on the sanke
+                x += 1;
+            }
+        }
+        return x == mapSize * 4;
     }
 
 }

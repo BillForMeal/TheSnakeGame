@@ -40,10 +40,11 @@ public class GameView {
     private Button playBtn;
     private Button optionsBtn;
     private Button ldrBoardBtn;
+    private Button gameBackBtn;
+
     private VBox rootNode;
     private GameGrid grid;
     private Button backBtn;
-    private Button gameBackBtn;
     private Label lbl;
     private Label currentScore;
     private Label scoreShown;
@@ -55,6 +56,9 @@ public class GameView {
     private Button set;
 
     private Label leaderboard;
+
+    private Button stop;
+    private Button resume;
 
     private Text howTo;
 
@@ -80,10 +84,6 @@ public class GameView {
         backBtn = new Button();
         backBtn.setText("Back to Main Menu");
         backBtn.setMinSize(80, 40);
-
-        gameBackBtn = new Button();
-        gameBackBtn.setText("Back to Main Menu!");
-        gameBackBtn.setMinSize(80, 40);
 
         // Options button
         optionsBtn = new Button();
@@ -127,10 +127,35 @@ public class GameView {
         set = new Button("All set!");
 
         leaderboard = new Label("");
+
+        //stop button
+        stop = new Button("pause");
+        resume = new Button("resume");
+
+        gameBackBtn = new Button();
+        gameBackBtn.setText("Back to Main Menu!");
+        gameBackBtn.setMinSize(80, 40);
+
     }
 
+    public Button getStop() {
+        return stop;
+    }
+
+    public Button getResume() {
+        return resume;
+    }
+
+    /**
+     *
+     * @return
+     */
     public Label getLeaderboard() {
         return leaderboard;
+    }
+
+    public Button getGameBackBtn() {
+        return gameBackBtn;
     }
 
     public Label getSnakeSpeed() {
@@ -203,10 +228,6 @@ public class GameView {
 
     public Label getScoreShown() {
         return scoreShown;
-    }
-
-    public Button getGameBackBtn() {
-        return gameBackBtn;
     }
 
 }

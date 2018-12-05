@@ -37,6 +37,19 @@ import javax.swing.JOptionPane;
  *  *
  *   * @author mpm022
  *
+ *
+ */
+/**
+ * Title: javafx keyboard event shortcut key
+ *
+ * Author: Himanshu verma
+ *
+ * Date: 2014-08-20
+ *
+ * Code version: 1.0
+ *
+ * Availability:
+ * https://stackoverflow.com/questions/25397742/javafx-keyboard-event-shortcut-key
  */
 public class GameController implements EventHandler<ActionEvent> {//implements EventHandler<ActionEvent>{
 
@@ -47,6 +60,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
     private GameGrid grid;
     private Thread th;
     private boolean gamemode;
+    private boolean easterEggTriggered;
 
     private static SimpleDateFormat empDateFormat = new SimpleDateFormat(
             "yyyy-MM-dd");
@@ -57,6 +71,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         //this.theSnake = theModel.getSnake();
         grid = new GameGrid(40, 15);
         gamemode = false;
+        easterEggTriggered = false;
 
         VBox rootNode = theView.getRootNode();
         this.theView.getPlayBtn().setOnAction(this);
@@ -80,8 +95,7 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
                     theModel.getSnake().setDirection("right");
                 }
                 if (theModel.getSnake().getDie() == true) {
-                    JOptionPane.showMessageDialog(null,
-                                                  "Please press the Back to Main Menu button");
+                    theTask.cancel();
                 }
 
                 //keyPressed.setText("Key Pressed: " + ke.getCode());
@@ -154,7 +168,6 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
     }
 
     private void options() {
-        gamemode = false;
         Label optionsTxt = new Label("Options go here!");
         theView.getRootNode().getChildren().clear();
         theView.getRootNode().getChildren().add(theView.getBackBtn());
@@ -186,10 +199,13 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
     }
 
     private void gameWindow() {
+        easterEggTriggered = false;
         theView.getRootNode().getChildren().clear();
         theView.getRootNode().getChildren().add(theView.getGameBackBtn());
         theView.getGameBackBtn().setAlignment(Pos.TOP_LEFT);
         theView.getRootNode().getChildren().add(grid.getPane());
+        theView.getRootNode().getChildren().add(theView.getCurrentScore());
+        theView.getRootNode().getChildren().add(theView.getScoreShown());
 
         theModel.refreshModel();
         grid.setIsFood(false);
@@ -199,6 +215,8 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         th.setDaemon(true);
         th.start();
         gamemode = true;
+        theView.getRootNode().getChildren().add(theView.getStop());
+        theView.getStop().setOnAction(e -> stopped());
     }
 
     private void backToMain() {
@@ -206,9 +224,12 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         theView.getRootNode().setAlignment(Pos.CENTER);
         theView.getRootNode().setSpacing(20);
         theView.getRootNode().getChildren().addAll(
-                theView.getGameTitle(), theView.getPlayBtn(),
-                theView.getOptionsBtn(), theView.getLdrBoardBtn(),
-                theView.getHowTo());
+                theView.getGameTitle(), theView.getHowTo(),
+                theView.getPlayBtn(),
+                theView.getOptionsBtn(),
+                theView.getLdrBoardBtn());
+        theTask.cancel();
+
     }
 
     private void UpdateGui(int score, Snake theSnake) {
@@ -221,14 +242,53 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         grid.paintSnake();
         grid.generateFood();
         grid.paintFood();
+        //change value
+        this.theView.getScoreShown().setText(Integer.toString(score));
+        if (grid.EasterEgg() == true && easterEggTriggered == false) {
+            easterEggTriggered = true;
+            this.EasterEgg();
+        }
 
+    }
+
+    private void stopped() {
+        // a = theView.getRootNode().getChildren();
         theView.getRootNode().getChildren().clear();
-        theView.getRootNode().getChildren().add(theView.getGameBackBtn());
+        theView.getRootNode().getChildren().add(theView.getBackBtn());
+        theView.getRootNode().getChildren().add(theView.getResume());
+        theView.getResume().setOnAction(e -> resumed());
+        theTask.cancel();
+    }
+
+    private void resumed() {
+        if (theModel.getSnake().getDie()) {
+            backToMain();
+        }
+        theView.getRootNode().getChildren().clear();
+        theView.getRootNode().getChildren().add(theView.getBackBtn());
+
+        theView.getBackBtn().setAlignment(Pos.TOP_LEFT);
+        theView.getRootNode().getChildren().add(grid.getPane());
         theView.getRootNode().getChildren().add(theView.getCurrentScore());
         theView.getRootNode().getChildren().add(theView.getScoreShown());
-        this.theView.getScoreShown().setText(Integer.toString(score));
-        theView.getGameBackBtn().setAlignment(Pos.TOP_LEFT);
-        theView.getRootNode().getChildren().add(grid.getPane());
+
+        theTask = new SnakeTask(theView, theModel);
+        th = new Thread(theTask);
+        th.setDaemon(true);
+        th.start();
+        theView.getRootNode().getChildren().add(theView.getStop());
+        theView.getStop().setOnAction(e -> stopped());
+
+    }
+
+    private void EasterEgg() {
+        int worldSize = grid.getsize() * 4 + 1;
+        theTask.setScore(worldSize);
+        theView.getRootNode().getChildren().clear();
+        theView.getRootNode().getChildren().add(theView.getGameBackBtn());
+        theTask.cancel();
+        JOptionPane.showMessageDialog(null,
+                                      "You are long enough to surround the world!\nStart a new game!");
     }
 
     //on the game map, set up keyboard event handler
@@ -279,6 +339,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
             return lowScore;
         }
 
-    }
+        public void setScore(int score) {
+            this.score = score;
+        }
 
+    }
 }
