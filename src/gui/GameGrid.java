@@ -70,11 +70,12 @@ public class GameGrid {
     }
 
     /**
+     * Make the grid
      *
      * @param n
      * @param pain
-     * @param n
-     * @return
+     * @param width
+     * @return the Pane pain
      */
     public static Pane makeGrid(int n, Pane pain, Rectangle[][] rec, int width) {
 

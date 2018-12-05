@@ -47,6 +47,9 @@ public class GameModel {
         return leaderboard;
     }
 
+    /**
+     * Refresh the game model
+     */
     public void refreshModel() {
         int speed = this.theSnake.getSpeed();
         this.theSnake = new Snake(0, 0);

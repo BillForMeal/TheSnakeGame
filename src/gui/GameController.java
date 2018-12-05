@@ -155,6 +155,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
     }
 
+    /**
+     * Load the leaderboard screen
+     */
     private void leaderBoard() {
         gamemode = false;
         Label ldrBoardTxt = new Label("Leaderboard");
@@ -167,6 +170,10 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         theView.getRootNode().getChildren().add(theView.getLeaderboard());
     }
 
+    /**
+     *
+     * Load the options menu
+     */
     private void options() {
         Label optionsTxt = new Label("Options go here!");
         theView.getRootNode().getChildren().clear();
@@ -182,6 +189,12 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
     }
 
+    /**
+     * Set speed and mapsize
+     *
+     * @param size of the snake
+     * @param speed of the snake
+     */
     private void setEverything(ChoiceBox<String> size, ChoiceBox<String> speed) {
         String Mapsize = size.getValue();
         grid = new GameGrid(Integer.valueOf(Mapsize), 15);
@@ -198,6 +211,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         System.out.println(theModel.getSnake().getSpeed());
     }
 
+    /**
+     * Load game window
+     */
     private void gameWindow() {
         easterEggTriggered = false;
         theView.getRootNode().getChildren().clear();
@@ -219,6 +235,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         theView.getStop().setOnAction(e -> stopped());
     }
 
+    /**
+     * Return to main menu
+     */
     private void backToMain() {
         theView.getRootNode().getChildren().clear();
         theView.getRootNode().setAlignment(Pos.CENTER);
@@ -232,6 +251,12 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
     }
 
+    /**
+     * Refresh the game grid
+     *
+     * @param score
+     * @param theSnake
+     */
     private void UpdateGui(int score, Snake theSnake) {
         /*
         this.theView.getGrid().clearGrid();
@@ -251,6 +276,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
     }
 
+    /**
+     * Load stopped screen
+     */
     private void stopped() {
         // a = theView.getRootNode().getChildren();
         theView.getRootNode().getChildren().clear();
@@ -260,6 +288,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
         theTask.cancel();
     }
 
+    /**
+     * Resume the game from the stopped screen
+     */
     private void resumed() {
         if (theModel.getSnake().getDie()) {
             backToMain();
@@ -281,6 +312,9 @@ public class GameController implements EventHandler<ActionEvent> {//implements E
 
     }
 
+    /**
+     * Triggers the easter egg
+     */
     private void EasterEgg() {
         int worldSize = grid.getsize() * 4 + 1;
         theTask.setScore(worldSize);

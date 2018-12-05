@@ -41,6 +41,9 @@ public class LeaderBoard implements java.io.Serializable {
         }
     }
 
+    /**
+     * Sort the board
+     */
     public void sortBoard() {
         Collections.sort(board);
         for (Player p : board) {
